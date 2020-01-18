@@ -1,3 +1,5 @@
+import 'package:first_desktop_application/routes/constants.dart';
+import 'package:first_desktop_application/routes/routes.dart';
 import 'package:first_desktop_application/themed/models/theme_model.dart';
 import 'package:first_desktop_application/themed/themes.dart';
 import 'package:flare_flutter/flare_actor.dart';
@@ -27,16 +29,12 @@ class MyApp extends StatelessWidget {
         final _model = themeModel;
 
         return MaterialApp(
+          initialRoute: homeRoute,
           debugShowCheckedModeBanner: false,
-          // darkTheme: ThemeData(
-          //   primarySwatch: Colors.orange,
-          // ),
-          // darkTheme: ThemeData.dark(),
-          // theme: ThemeData.light(),
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: _model.darkModeOn() ? ThemeMode.dark : ThemeMode.light,
-          home: MyHomePage(),
+          onGenerateRoute: Router.generateRoute,
         );
       },
     );
