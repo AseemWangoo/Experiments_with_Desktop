@@ -1,6 +1,7 @@
 import 'package:first_desktop_application/app-level/utils/screen_size.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
 
 class Home extends StatefulWidget {
   @override
@@ -16,7 +17,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     _controller = AnimationController(
       duration: Duration(seconds: 50),
       vsync: this,
-    );
+    )..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _controller.repeat();
+        }
+      });
 
     _controller.forward();
   }
@@ -30,7 +35,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     Offset _offset = Offset(0.3, -0.9);
-    // timeDilation = 2.0;
+    timeDilation = 2.0;
 
     final _height = ScreenQueries.instance.height(context);
     final _width = ScreenQueries.instance.width(context);
@@ -38,7 +43,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
-      // backgroundColor: Colors.black,
+      backgroundColor: Color(0xFF050303),
       body: Center(
         child: Transform(
           alignment: FractionalOffset.centerLeft,
