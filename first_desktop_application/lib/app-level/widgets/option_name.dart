@@ -37,11 +37,7 @@ class _OptionButtonState extends State<OptionButton>
 
     _rotateAnimSatellite = Tween(begin: 0.0, end: 1.0).animate(
       _animControlSatellite,
-    )
-      ..addListener(() {
-        setState(() {});
-      })
-      ..addStatusListener((status) {
+    )..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           _animControlSatellite.repeat();
         }
@@ -61,10 +57,22 @@ class _OptionButtonState extends State<OptionButton>
     //
     // timeDilation = 2.0;
 
-    return Container(
-      height: 100.0,
-      width: 100.0,
-      child: CustomPaint(
+    return AnimatedBuilder(
+      animation: _rotateAnimSatellite,
+      builder: (context, child) {
+        //
+
+        return CustomPaint(
+          child: child,
+          foregroundPainter: _CircularPainter(
+            indicatorColor: Colors.cyan,
+            indicatorPosition: _rotateAnimSatellite.value,
+          ),
+        );
+      },
+      child: Container(
+        height: 100.0,
+        width: 100.0,
         child: RawMaterialButton(
           onPressed: widget.onTap,
           child: Text(
@@ -76,10 +84,6 @@ class _OptionButtonState extends State<OptionButton>
           elevation: 2.0,
           // fillColor: Colors.white,
           padding: const EdgeInsets.all(10.0),
-        ),
-        foregroundPainter: _CircularPainter(
-          indicatorColor: Colors.cyan,
-          indicatorPosition: _rotateAnimSatellite.value,
         ),
       ),
     );
