@@ -18,7 +18,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       vsync: this,
     );
 
-    _controller.forward().orCancel;
+    _controller.forward();
   }
 
   @override
@@ -36,7 +36,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     final _width = ScreenQueries.instance.width(context);
 
     return Scaffold(
-      appBar: AppBar(),
+      extendBody: true,
+      extendBodyBehindAppBar: true,
       // backgroundColor: Colors.black,
       body: Center(
         child: Transform(
@@ -55,6 +56,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Navigator.pop(context),
+        label: Text('Back'),
+        icon: Icon(Icons.arrow_back),
+        backgroundColor: Colors.black,
       ),
     );
   }
