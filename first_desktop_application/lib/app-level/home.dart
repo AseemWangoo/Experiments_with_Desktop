@@ -1,3 +1,4 @@
+import 'package:first_desktop_application/app-level/widgets/option_name.dart';
 import 'package:first_desktop_application/routes/constants.dart';
 
 import 'package:flutter/material.dart';
@@ -8,46 +9,28 @@ class Home extends StatelessWidget {
     //Begin...
 
     return Scaffold(
+      backgroundColor: Colors.grey[850],
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              _OptionButton(
-                buttonText: 'Theming',
-                onTap: () => Navigator.pushNamed(context, themingRoute),
-              ),
-            ],
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                OptionButton(
+                  buttonText: 'Theming',
+                  onTap: () => Navigator.pushNamed(context, themingRoute),
+                ),
+                OptionButton(
+                  buttonText: 'Solar System',
+                  onTap: () => Navigator.pushNamed(context, themingRoute),
+                ),
+              ],
+            ),
           ),
         ),
       ),
-    );
-  }
-}
-
-class _OptionButton extends StatelessWidget {
-  const _OptionButton({
-    Key key,
-    @required this.buttonText,
-    @required this.onTap,
-  }) : super(key: key);
-
-  ///Specify the button text...
-  final String buttonText;
-
-  ///Action on tap of the button....
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return RaisedButton(
-      padding: const EdgeInsets.all(8.0),
-      textColor: Colors.white,
-      color: Colors.blue,
-      onPressed: onTap,
-      child: Text(buttonText),
     );
   }
 }
