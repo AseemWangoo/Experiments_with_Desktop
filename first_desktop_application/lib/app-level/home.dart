@@ -24,7 +24,7 @@ class Home extends StatelessWidget {
                 ),
                 OptionButton(
                   buttonText: 'Solar System',
-                  onTap: () => Navigator.pushNamed(context, themingRoute),
+                  onTap: () => Navigator.pushNamed(context, solarSystemRoute),
                 ),
               ],
             ),

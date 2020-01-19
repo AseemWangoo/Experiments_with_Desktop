@@ -6,3 +6,5 @@
 const String homeRoute = '/';
 
 const String themingRoute = '/themes';
+
+const String solarSystemRoute = '/solarsystem';
