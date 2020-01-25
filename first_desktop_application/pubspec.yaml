@@ -4,7 +4,7 @@ description: Hands on With Desktop application.
 version: 0.1.0
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.5.2 <3.0.0"
 
   flutter: ">=1.10.2-pre.54"
 
@@ -15,6 +15,7 @@ dependencies:
   provider: ^3.1.0+1
 
   flare_flutter: ^1.7.3
+  intl: ^0.16.1
 
 dev_dependencies:
   flutter_test:
