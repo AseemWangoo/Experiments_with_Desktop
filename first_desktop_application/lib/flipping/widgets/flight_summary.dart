@@ -1,30 +1,53 @@
 import 'package:first_desktop_application/flipping/data/demo_data.dart';
 import 'package:flutter/material.dart';
 
+enum SummaryTheme { dark, light }
+
 class FlightSummary extends StatelessWidget {
   final BoardingPassData boardingPass;
+  final SummaryTheme theme;
   final bool isOpen;
 
   const FlightSummary({
     Key key,
     this.boardingPass,
+    this.theme = SummaryTheme.light,
     this.isOpen = false,
   }) : super(key: key);
 
+  Color get mainTextColor {
+    Color textColor;
+    if (theme == SummaryTheme.dark) textColor = Colors.white;
+    if (theme == SummaryTheme.light) textColor = Color(0xFF083e64);
+    return textColor;
+  }
+
+  Color get secondaryTextColor {
+    Color textColor;
+    if (theme == SummaryTheme.dark) textColor = Color(0xff61849c);
+    if (theme == SummaryTheme.light) textColor = Color(0xFF838383);
+    return textColor;
+  }
+
+  Color get separatorColor {
+    Color color;
+    if (theme == SummaryTheme.light) color = Color(0xffeaeaea);
+    if (theme == SummaryTheme.dark) color = Color(0xff396583);
+    return color;
+  }
+
   TextStyle get bodyTextStyle => TextStyle(
-        color: Color(0xFF083e64),
+        color: mainTextColor,
         fontSize: 13,
         fontFamily: 'Oswald',
       );
 
   @override
   Widget build(BuildContext context) {
-    //
-
     return Container(
       decoration: _getBackgroundDecoration(),
-      // width: double.infinity,
-      // height: double.infinity,
+      width: double.infinity,
+      height: double.infinity,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
@@ -60,9 +83,18 @@ class FlightSummary extends StatelessWidget {
   }
 
   Decoration _getBackgroundDecoration() {
+    if (theme == SummaryTheme.light)
+      return BoxDecoration(
+        borderRadius: BorderRadius.circular(4.0),
+        color: Colors.white,
+      );
+
     return BoxDecoration(
       borderRadius: BorderRadius.circular(4.0),
-      color: Colors.white,
+      image: DecorationImage(
+        image: AssetImage('assets/images/bg_blue.png'),
+        fit: BoxFit.cover,
+      ),
     );
   }
 
@@ -75,7 +107,7 @@ class FlightSummary extends StatelessWidget {
         ),
         Text(
           boardingPass.origin.city,
-          style: bodyTextStyle.copyWith(color: Color(0xFF838383)),
+          style: bodyTextStyle.copyWith(color: secondaryTextColor),
         ),
       ],
     );
@@ -83,32 +115,36 @@ class FlightSummary extends StatelessWidget {
 
   Widget _buildLogoHeader() {
     //
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0),
-          child: Image.asset('assets/images/flutter-logo.png', width: 8),
-        ),
-        Text('Fluttair'.toUpperCase(),
-            style: TextStyle(
-              color: Color(0xFF083e64),
-              fontFamily: 'OpenSans',
-              fontSize: 10,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 1.5,
-            ))
-      ],
+    if (theme == SummaryTheme.light)
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: Image.asset('assets/images/flutter-logo.png', width: 8),
+          ),
+          Text('Fluttair'.toUpperCase(),
+              style: TextStyle(
+                color: mainTextColor,
+                fontFamily: 'OpenSans',
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.5,
+              ))
+        ],
+      );
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 2.0),
+      child: Image.asset('assets/images/logo_white.png', height: 12),
     );
   }
 
   Widget _buildSeparationLine() {
-    //
-
     return Container(
       width: double.infinity,
       height: 1,
-      color: Color(0xffeaeaea),
+      color: separatorColor,
     );
   }
 
@@ -134,14 +170,24 @@ class FlightSummary extends StatelessWidget {
   }
 
   Widget _buildBottomIcon() {
+    IconData icon;
+    if (theme == SummaryTheme.light) icon = Icons.keyboard_arrow_down;
+    if (theme == SummaryTheme.dark) icon = Icons.keyboard_arrow_up;
+
     return Icon(
-      Icons.keyboard_arrow_down,
-      color: Color(0xFF083e64),
+      icon,
+      color: mainTextColor,
       size: 18,
     );
   }
 
   Widget _buildTicketDuration() {
+    String planeRoutePath;
+    if (theme == SummaryTheme.light)
+      planeRoutePath = 'assets/images/planeroute_blue.png';
+    if (theme == SummaryTheme.dark)
+      planeRoutePath = 'assets/images/planeroute_white.png';
+
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -153,18 +199,22 @@ class FlightSummary extends StatelessWidget {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                Image.asset(
-                  'assets/images/planeroute_blue.png',
-                  fit: BoxFit.cover,
-                ),
-                _AnimatedSlideToRight(
-                  child: Image.asset(
+                Image.asset(planeRoutePath, fit: BoxFit.cover),
+                if (theme == SummaryTheme.light)
+                  Image.asset(
                     'assets/images/airplane_blue.png',
                     height: 20,
                     fit: BoxFit.contain,
                   ),
-                  isOpen: isOpen,
-                )
+                if (theme == SummaryTheme.dark)
+                  _AnimatedSlideToRight(
+                    child: Image.asset(
+                      'assets/images/airplane_white.png',
+                      height: 20,
+                      fit: BoxFit.contain,
+                    ),
+                    isOpen: isOpen,
+                  )
               ],
             ),
           ),
@@ -188,7 +238,7 @@ class FlightSummary extends StatelessWidget {
         ),
         Text(
           boardingPass.destination.city,
-          style: bodyTextStyle.copyWith(color: Color(0xFF838383)),
+          style: bodyTextStyle.copyWith(color: secondaryTextColor),
         ),
       ],
     );

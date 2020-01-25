@@ -57,6 +57,7 @@ class _TicketState extends State<Ticket> {
       _isOpen = !_isOpen;
       topCard = FlightSummary(
         boardingPass: widget.boardingPass,
+        theme: SummaryTheme.dark,
         isOpen: _isOpen,
       );
     });
