@@ -1,4 +1,5 @@
 import 'package:first_desktop_application/flipping/data/demo_data.dart';
+import 'package:first_desktop_application/flipping/widgets/flight_details.dart';
 import 'package:first_desktop_application/flipping/widgets/flight_summary.dart';
 import 'package:first_desktop_application/flipping/widgets/folding_ticket.dart';
 import 'package:flutter/material.dart';
@@ -20,23 +21,16 @@ class Ticket extends StatefulWidget {
 class _TicketState extends State<Ticket> {
   FlightSummary frontCard;
   FlightSummary topCard;
-  FlightSummary middleCard;
+  FlightDetails middleCard;
 
   bool _isOpen;
-
-  Widget get backCard => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4.0),
-          color: Color(0xffdce6ef),
-        ),
-      );
 
   @override
   void initState() {
     super.initState();
     _isOpen = false;
     frontCard = FlightSummary(boardingPass: widget.boardingPass);
-    middleCard = FlightSummary(boardingPass: widget.boardingPass);
+    middleCard = FlightDetails(boardingPass: widget.boardingPass);
   }
 
   @override

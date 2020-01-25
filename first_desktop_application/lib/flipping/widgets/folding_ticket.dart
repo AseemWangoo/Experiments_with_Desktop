@@ -54,15 +54,17 @@ class _FoldingTicketState extends State<FoldingTicket>
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(FoldingTicket.padding),
+      // Shifts the height..
       height: closedHeight +
           (openHeight - closedHeight) * Curves.easeOut.transform(_ratio),
       child: Container(
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-                color: Colors.black.withOpacity(.1),
-                blurRadius: 10,
-                spreadRadius: 1)
+              color: Colors.black.withOpacity(.1),
+              blurRadius: 10,
+              spreadRadius: 1,
+            )
           ],
         ),
         child: _buildEntry(0),
@@ -71,16 +73,19 @@ class _FoldingTicketState extends State<FoldingTicket>
   }
 
   Widget _buildEntry(int index, [double offset = 0.0]) {
+    // Fxn to handle the folding...
     int count = _entries.length - 1;
     FoldEntry entry = _entries[index];
     double ratio = max(0.0, min(1.0, _ratio * count + 1.0 - index * 1.0));
 
+    // Intelligently playing with recursion..
     Matrix4 mtx = Matrix4.identity()
       ..setEntry(3, 2, 0.001)
       ..setEntry(1, 2, 0.2)
       ..translate(0.0, offset)
       ..rotateX(pi * (ratio - 1.0));
 
+    // If one child, no need for stack...
     Widget card = SizedBox(
         height: entry.height, child: ratio < 0.5 ? entry.back : entry.front);
 
@@ -102,11 +107,13 @@ class _FoldingTicketState extends State<FoldingTicket>
 
   void _updateFromWidget() {
     _entries = widget.entries;
+    // Sets default duration to anim controller...
     _controller.duration =
         widget.duration ?? Duration(milliseconds: 400 * (_entries.length - 1));
   }
 
   void _tick() {
+    // Sets the ratio for future calculations...
     setState(() {
       _ratio = Curves.easeInQuad.transform(_controller.value);
     });
@@ -117,6 +124,8 @@ class FoldEntry {
   final Widget front;
   Widget back;
   final double height;
+
+  // Back card transformation..
 
   FoldEntry({@required this.front, @required this.height, Widget back}) {
     this.back = Transform(
