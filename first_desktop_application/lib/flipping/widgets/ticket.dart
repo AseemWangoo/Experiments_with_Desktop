@@ -1,4 +1,5 @@
 import 'package:first_desktop_application/flipping/data/demo_data.dart';
+import 'package:first_desktop_application/flipping/widgets/flight_barcode.dart';
 import 'package:first_desktop_application/flipping/widgets/flight_details.dart';
 import 'package:first_desktop_application/flipping/widgets/flight_summary.dart';
 import 'package:first_desktop_application/flipping/widgets/folding_ticket.dart';
@@ -22,8 +23,14 @@ class _TicketState extends State<Ticket> {
   FlightSummary frontCard;
   FlightSummary topCard;
   FlightDetails middleCard;
+  FlightBarcode bottomCard;
 
   bool _isOpen;
+
+  Widget get backCard => Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(4.0), color: Color(0xffdce6ef)),
+      );
 
   @override
   void initState() {
@@ -31,6 +38,7 @@ class _TicketState extends State<Ticket> {
     _isOpen = false;
     frontCard = FlightSummary(boardingPass: widget.boardingPass);
     middleCard = FlightDetails(boardingPass: widget.boardingPass);
+    bottomCard = FlightBarcode();
   }
 
   @override
@@ -48,6 +56,7 @@ class _TicketState extends State<Ticket> {
     return [
       FoldEntry(height: 160.0, front: topCard),
       FoldEntry(height: 160.0, front: middleCard, back: frontCard),
+      FoldEntry(height: 80.0, front: bottomCard, back: backCard)
     ];
   }
 
