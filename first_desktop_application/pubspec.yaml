@@ -49,3 +49,6 @@ flutter:
           weight: 700
         - asset: fonts/Roboto/Roboto-Black.ttf
           weight: 900
+    - family: Oswald
+      fonts:
+        - asset: fonts/Oswald-Regular.ttf
