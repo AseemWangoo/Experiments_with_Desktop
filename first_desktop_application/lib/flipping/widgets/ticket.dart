@@ -18,31 +18,53 @@ class Ticket extends StatefulWidget {
 }
 
 class _TicketState extends State<Ticket> {
+  FlightSummary frontCard;
+  FlightSummary topCard;
+  FlightSummary middleCard;
+
   bool _isOpen;
+
+  Widget get backCard => Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4.0),
+          color: Color(0xffdce6ef),
+        ),
+      );
 
   @override
   void initState() {
     super.initState();
     _isOpen = false;
+    frontCard = FlightSummary(boardingPass: widget.boardingPass);
+    middleCard = FlightSummary(boardingPass: widget.boardingPass);
   }
 
   @override
   Widget build(BuildContext context) {
-    //
-
     return GestureDetector(
       onTap: _handleOnTap,
-      // child: FoldingTicket(
-      //   isOpen: _isOpen,
-      // ),
-      child: FlightSummary(boardingPass: widget.boardingPass, isOpen: _isOpen),
+      child: FoldingTicket(
+        entries: _getEntries(),
+        isOpen: _isOpen,
+      ),
     );
+  }
+
+  List<FoldEntry> _getEntries() {
+    return [
+      FoldEntry(height: 160.0, front: topCard),
+      FoldEntry(height: 160.0, front: middleCard, back: frontCard),
+    ];
   }
 
   void _handleOnTap() {
     widget.onClick();
     setState(() {
       _isOpen = !_isOpen;
+      topCard = FlightSummary(
+        boardingPass: widget.boardingPass,
+        isOpen: _isOpen,
+      );
     });
   }
 }
