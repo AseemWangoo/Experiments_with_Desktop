@@ -6,6 +6,9 @@ import 'package:first_desktop_application/flipping/widgets/folding_ticket.dart';
 import 'package:flutter/material.dart';
 
 class Ticket extends StatefulWidget {
+  static const double nominalOpenHeight = 400; // 160 +160 +80 (_getEntries)
+  static const double nominalClosedHeight = 160; // 160
+
   final BoardingPassData boardingPass;
   final Function onClick;
 
