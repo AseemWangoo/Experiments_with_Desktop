@@ -26,7 +26,10 @@ class Home extends StatelessWidget {
               physics: BouncingScrollPhysics(),
               itemCount: _boardingPasses.length,
               itemBuilder: (context, index) {
-                return Ticket(boardingPass: _boardingPasses.elementAt(index));
+                return Ticket(
+                  boardingPass: _boardingPasses.elementAt(index),
+                  onClick: () => print('Clicked $index'),
+                );
               },
             ),
           ),
