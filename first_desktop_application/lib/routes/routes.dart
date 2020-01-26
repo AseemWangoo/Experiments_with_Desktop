@@ -1,6 +1,7 @@
 import 'package:first_desktop_application/app-level/home.dart';
 import 'package:first_desktop_application/routes/constants.dart';
 import 'package:first_desktop_application/solarsystem/home.dart' as ss;
+import 'package:first_desktop_application/flipping/home.dart' as flipping;
 import 'package:first_desktop_application/themed/home.dart';
 
 import 'package:flutter/material.dart';
@@ -23,6 +24,9 @@ class Router {
 
       case solarSystemRoute:
         return MaterialPageRoute(builder: (_) => ss.Home());
+
+      case flippingRoute:
+        return MaterialPageRoute(builder: (_) => flipping.Home());
 
       default:
         return MaterialPageRoute(

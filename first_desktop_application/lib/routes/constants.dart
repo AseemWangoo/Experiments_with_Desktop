@@ -8,3 +8,5 @@ const String homeRoute = '/';
 const String themingRoute = '/themes';
 
 const String solarSystemRoute = '/solarsystem';
+
+const String flippingRoute = '/flipping';
