@@ -1,3 +1,4 @@
+import 'package:first_desktop_application/inking/widgets/dark_ink_bar.dart';
 import 'package:first_desktop_application/inking/widgets/dark_ink_content.dart';
 
 import 'package:flutter/material.dart';
@@ -10,9 +11,13 @@ class Home extends StatelessWidget {
     //
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Inking')),
-      body: DarkInkContent(
-        darkMode: true,
+      body: Stack(
+        children: [
+          DarkInkContent(
+            darkMode: true,
+          ),
+          DarkInkBar(darkModeValue: true),
+        ],
       ),
     );
   }

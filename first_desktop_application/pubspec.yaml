@@ -53,3 +53,7 @@ flutter:
     - family: Oswald
       fonts:
         - asset: fonts/Oswald-Regular.ttf
+    - family: Merriweather
+      fonts:
+        - asset: fonts/Merriweather-Bold.otf
+        - asset: fonts/Merriweather-Black.otf
