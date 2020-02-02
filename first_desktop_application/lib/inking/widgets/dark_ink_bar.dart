@@ -19,6 +19,9 @@ class _DarkInkBarState extends State<DarkInkBar>
 
   AnimationController _controller;
   Animation<double> _iconOpacityAnimation;
+  Animation<double> _backgroundColorAnimation;
+  Animation<double> _foregroundColorAnimation;
+
   ImageProvider _darkModeToggleIconImage;
 
   @override
@@ -43,6 +46,40 @@ class _DarkInkBarState extends State<DarkInkBar>
       ),
     ]).animate(_controller);
 
+    _backgroundColorAnimation = TweenSequence<double>(
+      [
+        TweenSequenceItem(
+          tween: Tween<double>(begin: 0.0, end: 0.0),
+          weight: .20,
+        ),
+        TweenSequenceItem(
+          tween: Tween<double>(begin: 0.0, end: 1.0),
+          weight: .1,
+        ),
+        TweenSequenceItem(
+          tween: ConstantTween<double>(1.0),
+          weight: .20,
+        ),
+      ],
+    ).animate(_controller);
+
+    _foregroundColorAnimation = TweenSequence<double>(
+      [
+        TweenSequenceItem(
+          tween: Tween<double>(begin: 1.0, end: 1.0),
+          weight: .35,
+        ),
+        TweenSequenceItem(
+          tween: Tween<double>(begin: 1.0, end: 0.0),
+          weight: .1,
+        ),
+        TweenSequenceItem(
+          tween: ConstantTween<double>(0.0),
+          weight: .55,
+        ),
+      ],
+    ).animate(_controller);
+
     super.initState();
   }
 
@@ -52,6 +89,18 @@ class _DarkInkBarState extends State<DarkInkBar>
     final appSize = MediaQuery.of(context).size;
     final _model = Provider.of<TransitionModel>(context);
 
+    final backgroundColor = HSVColor.lerp(
+      HSVColor.fromColor(lightColor),
+      HSVColor.fromColor(darkColor),
+      _backgroundColorAnimation.value,
+    ).toColor();
+
+    final foregroundColor = HSVColor.lerp(
+      HSVColor.fromColor(lightColor),
+      HSVColor.fromColor(darkColor),
+      _foregroundColorAnimation.value,
+    ).toColor();
+
     return Positioned(
       left: 0,
       top: 0,
@@ -59,7 +108,7 @@ class _DarkInkBarState extends State<DarkInkBar>
       child: Column(
         children: [
           Container(
-            color: lightColor, //CHANGE...
+            color: backgroundColor,
             child: SafeArea(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -68,14 +117,14 @@ class _DarkInkBarState extends State<DarkInkBar>
                     onPressed: () => Navigator.pop(context),
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-                    // textColor: foregroundColor,
+                    textColor: foregroundColor,
                     child: Icon(Icons.arrow_back_ios),
                   ),
                   FlatButton(
                     onPressed: () => {},
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-                    // textColor: foregroundColor,
+                    textColor: foregroundColor,
                     child: ImageIcon(AssetImage(
                       'assets/images/icon-r.png',
                     )),
@@ -87,7 +136,7 @@ class _DarkInkBarState extends State<DarkInkBar>
                     },
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-                    // textColor: foregroundColor,
+                    textColor: foregroundColor,
                     child: AnimatedBuilder(
                       animation: _iconOpacityAnimation,
                       builder: (context, child) {

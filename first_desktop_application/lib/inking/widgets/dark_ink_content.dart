@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 class DarkInkContent extends StatelessWidget {
   final bool darkMode;
 
+  //TODO: Add scroll
+
   const DarkInkContent({Key key, this.darkMode = false}) : super(key: key);
 
   @override
