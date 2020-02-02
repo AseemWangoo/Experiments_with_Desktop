@@ -16,6 +16,8 @@ class _DarkInkControlsState extends State<DarkInkControls>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _buttonAnimation0;
+  Animation<double> _buttonAnimation1;
+  Animation<double> _buttonAnimation2;
 
   Color _backgroundColor;
   Color _foregroundColor;
@@ -44,6 +46,52 @@ class _DarkInkControlsState extends State<DarkInkControls>
         TweenSequenceItem<double>(
           tween: ConstantTween<double>(0.0),
           weight: 4,
+        ),
+      ],
+    ).animate(_controller);
+
+    _buttonAnimation1 = TweenSequence(
+      <TweenSequenceItem<double>>[
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 0.0, end: 0.0),
+          weight: 2,
+        ),
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 0.0, end: 100.0),
+          weight: 10,
+        ),
+        TweenSequenceItem<double>(
+          tween: ConstantTween<double>(100.0),
+          weight: 76,
+        ),
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 100.0, end: 0.0),
+          weight: 10,
+        ),
+        TweenSequenceItem<double>(
+          tween: ConstantTween<double>(0.0),
+          weight: 2,
+        ),
+      ],
+    ).animate(_controller);
+
+    _buttonAnimation2 = TweenSequence(
+      <TweenSequenceItem<double>>[
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 0.0, end: 0.0),
+          weight: 4,
+        ),
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 0.0, end: 100.0),
+          weight: 10,
+        ),
+        TweenSequenceItem<double>(
+          tween: ConstantTween<double>(100.0),
+          weight: 76,
+        ),
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 100.0, end: 0.0),
+          weight: 10,
         ),
       ],
     ).animate(_controller);
@@ -92,22 +140,46 @@ class _DarkInkControlsState extends State<DarkInkControls>
             ),
           ),
           Padding(padding: EdgeInsets.all(10)),
-          FloatingActionButton(
-            mini: true,
-            heroTag: 1,
-            onPressed: () => {},
-            backgroundColor: _backgroundColor,
-            foregroundColor: _foregroundColor,
-            child: Icon(Icons.more_horiz),
+          AnimatedBuilder(
+            animation: _buttonAnimation1,
+            builder: (context, child) {
+              //
+
+              return Transform(
+                transform:
+                    Matrix4.translationValues(0, _buttonAnimation1.value, 0),
+                child: child,
+              );
+            },
+            child: FloatingActionButton(
+              mini: true,
+              heroTag: 1,
+              onPressed: () => {},
+              backgroundColor: _backgroundColor,
+              foregroundColor: _foregroundColor,
+              child: Icon(Icons.more_horiz),
+            ),
           ),
           Padding(padding: EdgeInsets.all(10)),
-          FloatingActionButton(
-            heroTag: 2,
-            mini: true,
-            onPressed: () => {},
-            backgroundColor: _backgroundColor,
-            foregroundColor: _foregroundColor,
-            child: Icon(Icons.arrow_forward),
+          AnimatedBuilder(
+            animation: _buttonAnimation2,
+            builder: (context, child) {
+              //
+
+              return Transform(
+                transform:
+                    Matrix4.translationValues(0, _buttonAnimation2.value, 0),
+                child: child,
+              );
+            },
+            child: FloatingActionButton(
+              heroTag: 2,
+              mini: true,
+              onPressed: () => {},
+              backgroundColor: _backgroundColor,
+              foregroundColor: _foregroundColor,
+              child: Icon(Icons.arrow_forward),
+            ),
           ),
         ],
       ),
