@@ -1,12 +1,15 @@
+import 'package:first_desktop_application/inking/models/dark_model.dart';
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DarkInkBar extends StatefulWidget {
   final bool darkModeValue;
 
-  const DarkInkBar({Key key, this.darkModeValue}) : super(key: key);
+  const DarkInkBar({Key key, this.darkModeValue = false}) : super(key: key);
 
   @override
-  _DarkInkBarState createState() => _DarkInkBarState(darkModeValue);
+  _DarkInkBarState createState() => _DarkInkBarState();
 }
 
 class _DarkInkBarState extends State<DarkInkBar>
@@ -17,10 +20,6 @@ class _DarkInkBarState extends State<DarkInkBar>
   AnimationController _controller;
   Animation<double> _iconOpacityAnimation;
   ImageProvider _darkModeToggleIconImage;
-
-  bool darkModeValue;
-
-  _DarkInkBarState(this.darkModeValue);
 
   @override
   void initState() {
@@ -44,7 +43,6 @@ class _DarkInkBarState extends State<DarkInkBar>
       ),
     ]).animate(_controller);
 
-    _darkModeToggleIconImage = AssetImage('assets/images/icon-moon.png');
     super.initState();
   }
 
@@ -52,6 +50,7 @@ class _DarkInkBarState extends State<DarkInkBar>
   Widget build(BuildContext context) {
     //
     final appSize = MediaQuery.of(context).size;
+    final _model = Provider.of<TransitionModel>(context);
 
     return Positioned(
       left: 0,
@@ -82,13 +81,29 @@ class _DarkInkBarState extends State<DarkInkBar>
                     )),
                   ),
                   FlatButton(
-                    onPressed: () => darkModeValue = !(darkModeValue ?? true),
+                    onPressed: () {
+                      _model.switchMode(!_model.currentMode);
+                      _handleDarkModeChange();
+                    },
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     // textColor: foregroundColor,
-                    child: Opacity(
-                      opacity: _iconOpacityAnimation.value,
-                      child: ImageIcon(_darkModeToggleIconImage),
+                    child: AnimatedBuilder(
+                      animation: _iconOpacityAnimation,
+                      builder: (context, child) {
+                        // SOLVING FIRST LOAD ISSUE...
+                        if (_model.isFirstLoad) {
+                          _darkModeToggleIconImage =
+                              AssetImage('assets/images/icon-moon.png');
+                        } else {
+                          _darkModeToggleIconImage = _updateIcon();
+                        }
+
+                        return Opacity(
+                          opacity: _iconOpacityAnimation.value,
+                          child: ImageIcon(_darkModeToggleIconImage),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -108,5 +123,24 @@ class _DarkInkBarState extends State<DarkInkBar>
   void dispose() {
     _controller?.dispose();
     super.dispose();
+  }
+
+  // OTHER FXNS....
+  ImageProvider<dynamic> _updateIcon() {
+    if (_controller.value < 0.5) {
+      return _darkModeToggleIconImage =
+          AssetImage('assets/images/icon-sun.png');
+    } else {
+      return _darkModeToggleIconImage =
+          AssetImage('assets/images/icon-moon.png');
+    }
+  }
+
+  void _handleDarkModeChange() {
+    if (widget.darkModeValue) {
+      _controller.forward(from: 0.0);
+    } else {
+      _controller.reverse(from: 1.0);
+    }
   }
 }
