@@ -1,6 +1,7 @@
 import 'package:first_desktop_application/inking/models/dark_model.dart';
 import 'package:first_desktop_application/inking/widgets/dark_ink_bar.dart';
 import 'package:first_desktop_application/inking/widgets/dark_ink_content.dart';
+import 'package:first_desktop_application/inking/widgets/dark_ink_controls.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,10 +24,9 @@ class Home extends StatelessWidget {
 
             return Stack(
               children: [
-                DarkInkContent(
-                  darkMode: _currentMode,
-                ),
+                DarkInkContent(darkMode: _currentMode),
                 DarkInkBar(darkModeValue: _currentMode),
+                DarkInkControls(darkModeValue: _currentMode),
               ],
             );
           },
