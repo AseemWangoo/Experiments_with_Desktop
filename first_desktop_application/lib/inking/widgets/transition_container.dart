@@ -86,24 +86,24 @@ class _TransitionContainerState extends State<TransitionContainer>
     final width = appSize.width;
     final height = appSize.height;
 
-    print('>>>> FG ${_childForeground.runtimeType}');
-    print('>>>> BG ${_childBackground.runtimeType}');
+    // print('>>>> FG ${_childForeground.runtimeType}');
+    // print('>>>> BG ${_childBackground.runtimeType}');
 
     // 0 => light mode
     // Clicked on first time, then index goes to 1 (dark Mode)...
     // Clicked again, index = 1 (light mode)..
     // CLicked on dark mode, index = 2 (2 >=3)
-    print('>>>> Image ${_images[_currentImageIndex]} >>> $_currentImageIndex');
+    // print('>>>> Image ${_images[_currentImageIndex]} >>> $_currentImageIndex');
 
     List<Widget> children = <Widget>[
       Container(
         width: width,
         height: height,
-        child: widget.child,
+        child: _childBackground ?? widget.child, // Changed line....
       ),
     ];
 
-    // If we swapped the child then add the foreground to the list of children when animating
+    // TODO:
     if (_childForeground != null) {
       children.add(
         Container(
