@@ -1,3 +1,4 @@
+import 'package:first_desktop_application/inking/widgets/widget_mask.dart';
 import 'package:flutter/material.dart';
 
 class TransitionContainer extends StatefulWidget {
@@ -103,13 +104,23 @@ class _TransitionContainerState extends State<TransitionContainer>
       ),
     ];
 
-    // TODO:
+    // TODO: AnimatedSprite..
     if (_childForeground != null) {
       children.add(
-        Container(
-          width: width,
-          height: height,
-          child: _childForeground,
+        WidgetMask(
+          child: Container(
+            width: width,
+            height: height,
+            child: _childForeground,
+          ),
+          maskChild: Container(
+            width: width,
+            height: height,
+            // Draw the transition animation as the mask
+            child: ImageIcon(
+              _images[_currentImageIndex],
+            ),
+          ),
         ),
       );
     }
