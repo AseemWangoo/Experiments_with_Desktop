@@ -43,9 +43,6 @@ class _TransitionContainerState extends State<TransitionContainer>
       duration: const Duration(milliseconds: 1500),
     );
 
-    _controller.addListener(() {
-      setState(() {});
-    });
     _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         setState(() {
@@ -105,7 +102,6 @@ class _TransitionContainerState extends State<TransitionContainer>
       ),
     ];
 
-    // TODO: Take care of animation..
     if (_childForeground != null) {
       children.add(
         WidgetMask(
@@ -118,11 +114,16 @@ class _TransitionContainerState extends State<TransitionContainer>
           maskChild: Container(
             width: width,
             height: height,
-            child: AnimatedSprite(
-              image: _images[_currentImageIndex],
-              frameWidth: 360, // Works well with this number
-              frameHeight: 720, // Works well with this number
+            child: AnimatedBuilder(
               animation: _animation,
+              builder: (context, _) {
+                return AnimatedSprite(
+                  image: _images[_currentImageIndex],
+                  frameWidth: 360, // Works well with this number
+                  frameHeight: 720, // Works well with this number
+                  animation: _animation,
+                );
+              },
             ),
           ),
         ),
