@@ -2,8 +2,8 @@ import 'package:first_desktop_application/inking/widgets/sprite.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedSprite extends AnimatedWidget {
-  final double frameWidth;
-  final double frameHeight;
+  final int frameWidth;
+  final int frameHeight;
   final ImageProvider image;
 
   AnimatedSprite({

@@ -114,11 +114,16 @@ class _TransitionContainerState extends State<TransitionContainer>
             height: height,
             child: _childForeground,
           ),
-          maskChild: AnimatedSprite(
-            image: _images[_currentImageIndex],
-            frameWidth: width,
-            frameHeight: height,
-            animation: _animation,
+          // Wrapping with Container VVIP..
+          maskChild: Container(
+            width: width,
+            height: height,
+            child: AnimatedSprite(
+              image: _images[_currentImageIndex],
+              frameWidth: 360, // Works well with this number
+              frameHeight: 720, // Works well with this number
+              animation: _animation,
+            ),
           ),
         ),
       );
