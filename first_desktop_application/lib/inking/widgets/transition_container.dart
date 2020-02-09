@@ -1,3 +1,4 @@
+import 'package:first_desktop_application/inking/widgets/animated_sprite.dart';
 import 'package:first_desktop_application/inking/widgets/widget_mask.dart';
 import 'package:flutter/material.dart';
 
@@ -104,7 +105,7 @@ class _TransitionContainerState extends State<TransitionContainer>
       ),
     ];
 
-    // TODO: AnimatedSprite..
+    // TODO: Take care of animation..
     if (_childForeground != null) {
       children.add(
         WidgetMask(
@@ -113,13 +114,11 @@ class _TransitionContainerState extends State<TransitionContainer>
             height: height,
             child: _childForeground,
           ),
-          maskChild: Container(
-            width: width,
-            height: height,
-            // Draw the transition animation as the mask
-            child: ImageIcon(
-              _images[_currentImageIndex],
-            ),
+          maskChild: AnimatedSprite(
+            image: _images[_currentImageIndex],
+            frameWidth: width,
+            frameHeight: height,
+            animation: _animation,
           ),
         ),
       );
