@@ -16,7 +16,7 @@ class AppTheme {
     ),
     fontFamily: 'Roboto',
     textTheme: TextTheme(
-      body1: TextStyle(color: Colors.black),
+      bodyText2: TextStyle(color: Colors.black),
     ),
   );
 
@@ -28,7 +28,7 @@ class AppTheme {
     ),
     fontFamily: 'Roboto',
     textTheme: TextTheme(
-      body1: TextStyle(color: Colors.white),
+      bodyText2: TextStyle(color: Colors.white),
     ),
   );
 }
