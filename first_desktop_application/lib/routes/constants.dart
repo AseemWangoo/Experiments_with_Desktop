@@ -10,3 +10,5 @@ const String themingRoute = '/themes';
 const String solarSystemRoute = '/solarsystem';
 
 const String flippingRoute = '/flipping';
+
+const String inkingRoute = '/inking';
