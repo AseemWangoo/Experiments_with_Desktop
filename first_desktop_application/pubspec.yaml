@@ -57,3 +57,10 @@ flutter:
       fonts:
         - asset: fonts/Merriweather-Bold.otf
         - asset: fonts/Merriweather-Black.otf
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+        - asset: fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Poppins-Bold.ttf
+          weight: 700

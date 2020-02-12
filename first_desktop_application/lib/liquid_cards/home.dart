@@ -9,7 +9,11 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text('Liquid Cards')),
-      body: Center(child: Text('Liquid Cards')),
+      backgroundColor: Color(0xff22222b),
+      body: Theme(
+        data: ThemeData(fontFamily: "Poppins", primarySwatch: Colors.orange),
+        child: Center(child: Text('Liquid Cards')),
+      ),
     );
   }
 }
