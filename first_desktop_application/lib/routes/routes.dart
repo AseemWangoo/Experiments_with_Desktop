@@ -3,6 +3,7 @@ import 'package:first_desktop_application/routes/constants.dart';
 import 'package:first_desktop_application/solarsystem/home.dart' as ss;
 import 'package:first_desktop_application/flipping/home.dart' as flipping;
 import 'package:first_desktop_application/inking/home.dart' as inking;
+import 'package:first_desktop_application/liquid_cards/home.dart' as liquid;
 import 'package:first_desktop_application/themed/home.dart';
 
 import 'package:flutter/material.dart';
@@ -31,6 +32,9 @@ class Router {
 
       case inkingRoute:
         return MaterialPageRoute(builder: (_) => inking.Home());
+
+      case liquidCardsRoute:
+        return MaterialPageRoute(builder: (_) => liquid.Home());
 
       default:
         return MaterialPageRoute(
