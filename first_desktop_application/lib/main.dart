@@ -1,3 +1,5 @@
+import 'package:first_desktop_application/app-level/services/root_service.dart';
+import 'package:first_desktop_application/locator.dart';
 import 'package:first_desktop_application/routes/constants.dart';
 import 'package:first_desktop_application/routes/routes.dart';
 import 'package:first_desktop_application/themed/models/theme_model.dart';
@@ -8,15 +10,15 @@ import 'package:flutter/foundation.dart'
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-GlobalKey<_MyAppState> rootKey = GlobalKey();
-
 void main() {
   debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+
+  setupLocator();
 
   runApp(
     ChangeNotifierProvider<ThemeSwitcher>(
       builder: (_) => ThemeSwitcher(),
-      child: MyApp(key: rootKey),
+      child: MyApp(key: locator<RootService>().rootKey),
     ),
   );
 }
@@ -25,10 +27,10 @@ class MyApp extends StatefulWidget {
   MyApp({Key key}) : super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends State<MyApp> {
   String _errorMessage;
 
   void onError(String message) {
