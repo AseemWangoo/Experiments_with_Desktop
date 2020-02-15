@@ -8,18 +8,33 @@ import 'package:flutter/foundation.dart'
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+GlobalKey<_MyAppState> rootKey = GlobalKey();
+
 void main() {
   debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
 
   runApp(
     ChangeNotifierProvider<ThemeSwitcher>(
       builder: (_) => ThemeSwitcher(),
-      child: MyApp(),
+      child: MyApp(key: rootKey),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  MyApp({Key key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  String _errorMessage;
+
+  void onError(String message) {
+    if (mounted) setState(() => _errorMessage = message);
+  }
+
   @override
   Widget build(BuildContext context) {
     //
@@ -28,14 +43,17 @@ class MyApp extends StatelessWidget {
       builder: (_, themeModel, __) {
         final _model = themeModel;
 
-        return MaterialApp(
-          initialRoute: homeRoute,
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: _model.darkModeOn() ? ThemeMode.dark : ThemeMode.light,
-          onGenerateRoute: Router.generateRoute,
-        );
+        return _errorMessage != null
+            ? ErrorWidget(_errorMessage)
+            : MaterialApp(
+                initialRoute: homeRoute,
+                debugShowCheckedModeBanner: false,
+                theme: AppTheme.lightTheme,
+                darkTheme: AppTheme.darkTheme,
+                themeMode:
+                    _model.darkModeOn() ? ThemeMode.dark : ThemeMode.light,
+                onGenerateRoute: Router.generateRoute,
+              );
       },
     );
   }
