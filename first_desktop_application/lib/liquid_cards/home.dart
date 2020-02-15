@@ -1,6 +1,7 @@
 import 'package:first_desktop_application/liquid_cards/data/demo_data.dart';
 import 'package:first_desktop_application/liquid_cards/styles/styles.dart';
 import 'package:first_desktop_application/liquid_cards/widgets/drink_card.dart';
+import 'package:first_desktop_application/liquid_cards/widgets/rounded_shadow.dart';
 
 import 'package:flutter/material.dart';
 
@@ -41,7 +42,7 @@ class _HomeState extends State<Home> {
         child: Stack(
           children: <Widget>[
             ListView.builder(
-              // padding: EdgeInsets.only(bottom: 40, top: headerHeight + 10),
+              padding: EdgeInsets.only(bottom: 40, top: headerHeight + 10),
               itemCount: _drinks.length,
               scrollDirection: Axis.vertical,
               controller: _scrollController,
@@ -60,11 +61,16 @@ class _HomeState extends State<Home> {
     return Container(
       alignment: Alignment.topCenter,
       height: height,
-      child: Container(
-        width: double.infinity,
-        child: Image.asset(
-          "assets/images/Header-Dark.png",
-          fit: BoxFit.fill,
+      child: RoundedShadow(
+        topLeftRadius: 0,
+        topRightRadius: 0,
+        shadowColor: Color(0x0).withAlpha(65),
+        child: Container(
+          width: double.infinity,
+          child: Image.asset(
+            "assets/images/Header-Dark.png",
+            fit: BoxFit.fill,
+          ),
         ),
       ),
     );
