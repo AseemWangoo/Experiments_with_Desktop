@@ -56,7 +56,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-  // TODO:Rounded
   Widget _buildTopBg(double height) {
     return Container(
       alignment: Alignment.topCenter,
@@ -126,6 +125,30 @@ class _HomeState extends State<Home> {
   }
 
   void _handleDrinkTapped(DrinkData data) {
-    // TODO:
+    //Open tapped drink card and scroll to it
+
+    // UNSELECT THE CARD, IF SAME CLICKED TWICE...
+    setState(() {
+      if (_selectedDrink == data) {
+        _selectedDrink = null;
+      } else {
+        _selectedDrink = data;
+        int selectedIndex = _drinks.indexOf(_selectedDrink);
+
+        double closedHeight = DrinkListCard.nominalHeightClosed;
+
+        // ADJUST SCROLLER >>>>
+        var offset =
+            selectedIndex * (closedHeight + _listPadding) - closedHeight * .35;
+
+        print('Offset >> $offset');
+
+        _scrollController.animateTo(
+          offset,
+          duration: Duration(milliseconds: 700),
+          curve: Curves.easeOutQuad,
+        );
+      }
+    });
   }
 }

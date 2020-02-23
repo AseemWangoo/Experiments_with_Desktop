@@ -143,7 +143,11 @@ class _DrinkListCardState extends State<DrinkListCard>
     );
   }
 
+  /// Override the handle tap...
+  /// Pass the drinkData back to the callee.
   void _handleTap() {
-    //TODO:
+    if (widget.onTap != null) {
+      widget.onTap(widget.drinkData);
+    }
   }
 }
