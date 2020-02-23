@@ -113,7 +113,13 @@ class _DrinkListCardState extends State<DrinkListCard>
             color: Color(0xff303238),
             child: Stack(
               children: <Widget>[
-                //TODO: Include ANimatedOpacity
+                // RESPONSIBLE FOR OPACITY FOR THE WAVES..
+                AnimatedOpacity(
+                  opacity: widget.isOpen ? 1 : 0,
+                  duration: Duration(milliseconds: 500),
+                  child: _buildLiquidBackground(_maxFillLevel, fillLevel),
+                ),
+
                 //Card Content
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
@@ -137,6 +143,14 @@ class _DrinkListCardState extends State<DrinkListCard>
           ),
         ),
       ),
+    );
+  }
+
+  Stack _buildLiquidBackground(double _maxFillLevel, double fillLevel) {
+    return Stack(
+      children: <Widget>[
+        Text('Hiii', style: TextStyle(color: Colors.white)),
+      ],
     );
   }
 

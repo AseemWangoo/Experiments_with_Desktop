@@ -142,7 +142,7 @@ class _HomeState extends State<Home> {
         var offset =
             selectedIndex * (closedHeight + _listPadding) - closedHeight * .35;
 
-        print('Offset >> $offset');
+        // print('Offset >> $offset');
 
         _scrollController.animateTo(
           offset,
