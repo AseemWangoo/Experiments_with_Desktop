@@ -2,6 +2,8 @@ import 'package:first_desktop_application/liquid_cards/data/demo_data.dart';
 import 'package:first_desktop_application/liquid_cards/styles/styles.dart';
 import 'package:first_desktop_application/liquid_cards/widgets/rounded_shadow.dart';
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class DrinkListCard extends StatefulWidget {
@@ -28,7 +30,13 @@ class DrinkListCard extends StatefulWidget {
 
 class _DrinkListCardState extends State<DrinkListCard>
     with SingleTickerProviderStateMixin {
+  bool _wasOpen;
+  Animation<double> _fillTween;
+  Animation<double> _pointsTween;
+
   AnimationController _liquidSimController;
+
+  //TODO: Create Simulation...
 
   @override
   void initState() {
@@ -36,6 +44,16 @@ class _DrinkListCardState extends State<DrinkListCard>
     _liquidSimController = AnimationController(
       vsync: this,
       duration: Duration(milliseconds: 3000),
+    );
+
+    _liquidSimController.addListener(_rebuildIfOpen);
+
+    // Raises the fill level of the card
+    _fillTween = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _liquidSimController,
+        curve: Interval(.12, .45, curve: Curves.easeOut),
+      ),
     );
   }
 
@@ -50,7 +68,17 @@ class _DrinkListCardState extends State<DrinkListCard>
     //Determine the points required text value, using the _pointsTween
     var pointsRequired = widget.drinkData.requiredPoints;
 
-    print('IS OPEN >>>> ${widget.isOpen}');
+    // print('IS OPEN >>>> ${widget.isOpen}');
+
+    // widget.earnedPoints -> always same 150.0
+    // Value is taken min. b/w 1 and the division...(as animation max value is 1.0)
+    double _maxFillLevel = min(
+      1,
+      widget.earnedPoints / widget.drinkData.requiredPoints,
+    );
+
+    double fillLevel = _maxFillLevel;
+
     double cardHeight = widget.isOpen
         ? DrinkListCard.nominalHeightOpen
         : DrinkListCard.nominalHeightClosed;
@@ -148,6 +176,12 @@ class _DrinkListCardState extends State<DrinkListCard>
   void _handleTap() {
     if (widget.onTap != null) {
       widget.onTap(widget.drinkData);
+    }
+  }
+
+  void _rebuildIfOpen() {
+    if (widget.isOpen) {
+      setState(() {});
     }
   }
 }

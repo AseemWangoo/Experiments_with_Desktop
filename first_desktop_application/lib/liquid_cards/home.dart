@@ -121,6 +121,7 @@ class _HomeState extends State<Home> {
         isOpen: _drinks[index] == _selectedDrink,
         onTap: _handleDrinkTapped,
       ),
+      // SETS ONLY THE SELECTED DRINK TO TRUE....
     );
   }
 
