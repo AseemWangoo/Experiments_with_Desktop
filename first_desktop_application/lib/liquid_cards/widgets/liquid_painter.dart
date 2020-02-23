@@ -42,6 +42,9 @@ class LiquidSimulation {
     //Last endpoint at 1,0
     endPts.add(Offset(1, 0));
 
+    // PERF TIP...
+    ctrlPts.clear();
+
     // Always 4..
     for (var i = 0; i < curveCount; i++) {
       // Randomize this variable....
