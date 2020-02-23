@@ -147,9 +147,28 @@ class _DrinkListCardState extends State<DrinkListCard>
   }
 
   Stack _buildLiquidBackground(double _maxFillLevel, double fillLevel) {
+    // RESPONSIBLE FOR MAKING THE WAVE FROM BOTTOM TO UP...
     return Stack(
+      fit: StackFit.expand,
       children: <Widget>[
-        Text('Hiii', style: TextStyle(color: Colors.white)),
+        Transform.translate(
+          offset: Offset(
+            0,
+            DrinkListCard.nominalHeightOpen * 1.2 -
+                DrinkListCard.nominalHeightOpen *
+                    _fillTween.value *
+                    _maxFillLevel *
+                    1.2,
+          ),
+          child: CustomPaint(
+            painter: LiquidPainter(
+              fillLevel,
+              _liquidSim1,
+              _liquidSim2,
+              waveHeight: 100,
+            ),
+          ),
+        ),
       ],
     );
   }

@@ -100,7 +100,16 @@ class LiquidPainter extends CustomPainter {
     Size size,
     double offsetY,
     Color color,
-  ) {}
+  ) {
+    // Create a path around bottom and sides of card >>>>> THIS ONLY FILLS THE CARD WITH WAVE...
+    var path = Path()
+      ..moveTo(size.width * 1.25, 0)
+      ..lineTo(size.width * 1.25, size.height)
+      ..lineTo(-size.width * .25, size.height)
+      ..lineTo(-size.width * .25, 0);
+
+    canvas.drawPath(path, Paint()..color = color);
+  }
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
