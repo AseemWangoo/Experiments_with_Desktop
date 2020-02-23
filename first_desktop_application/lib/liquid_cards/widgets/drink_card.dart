@@ -37,8 +37,8 @@ class _DrinkListCardState extends State<DrinkListCard>
 
   AnimationController _liquidSimController;
 
-  // LiquidSimulation _liquidSim1 = LiquidSimulation();
-  // LiquidSimulation _liquidSim2 = LiquidSimulation();
+  LiquidSimulation _liquidSim1 = LiquidSimulation();
+  LiquidSimulation _liquidSim2 = LiquidSimulation();
 
   @override
   void initState() {
@@ -72,6 +72,17 @@ class _DrinkListCardState extends State<DrinkListCard>
 
     // print('IS OPEN >>>> ${widget.isOpen}');
     if (widget.isOpen != _wasOpen) {
+      // SHOW ANIMS ONLY IF CARD IS OPEN..
+      if (widget.isOpen) {
+        _liquidSim1.start(_liquidSimController, true);
+        _liquidSim2.start(_liquidSimController, false);
+
+        _liquidSimController.forward(from: 0);
+
+        // print('INSIDE INNNER IF');
+      }
+      // print('OUTSIDE IF');
+
       _wasOpen = widget.isOpen; // EITHER FALSE OR TRUE....
     }
 
