@@ -102,6 +102,7 @@ class _DrinkListCardState extends State<DrinkListCard>
             color: Color(0xff303238),
             child: Stack(
               children: <Widget>[
+                //TODO: Include ANimatedOpacity
                 //Card Content
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
@@ -113,6 +114,8 @@ class _DrinkListCardState extends State<DrinkListCard>
                         _buildTopContent(),
                         //Spacer
                         const SizedBox(height: 12.0),
+
+                        // Wrap this with A.O
                         _buildBottomContent(),
                       ],
                     ),
