@@ -1,5 +1,6 @@
 import 'package:first_desktop_application/liquid_cards/data/demo_data.dart';
 import 'package:first_desktop_application/liquid_cards/styles/styles.dart';
+import 'package:first_desktop_application/liquid_cards/widgets/liquid_painter.dart';
 import 'package:first_desktop_application/liquid_cards/widgets/rounded_shadow.dart';
 
 import 'dart:math';
@@ -36,7 +37,8 @@ class _DrinkListCardState extends State<DrinkListCard>
 
   AnimationController _liquidSimController;
 
-  //TODO: Create Simulation...
+  // LiquidSimulation _liquidSim1 = LiquidSimulation();
+  // LiquidSimulation _liquidSim2 = LiquidSimulation();
 
   @override
   void initState() {
@@ -69,9 +71,14 @@ class _DrinkListCardState extends State<DrinkListCard>
     var pointsRequired = widget.drinkData.requiredPoints;
 
     // print('IS OPEN >>>> ${widget.isOpen}');
+    if (widget.isOpen != _wasOpen) {
+      _wasOpen = widget.isOpen; // EITHER FALSE OR TRUE....
+    }
 
-    // widget.earnedPoints -> always same 150.0
-    // Value is taken min. b/w 1 and the division...(as animation max value is 1.0)
+    // print('WAS OPEN >>>> $_wasOpen');
+
+    /// widget.earnedPoints -> always same 150.0
+    /// Value is taken min. b/w 1 and the division...(as animation max value is 1.0)
     double _maxFillLevel = min(
       1,
       widget.earnedPoints / widget.drinkData.requiredPoints,
@@ -85,29 +92,34 @@ class _DrinkListCardState extends State<DrinkListCard>
 
     return GestureDetector(
       onTap: _handleTap,
-      child: RoundedShadow.fromRadius(
-        12.0,
-        child: Container(
-          color: Color(0xff303238),
-          child: Stack(
-            children: <Widget>[
-              //Card Content
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
-                child: SingleChildScrollView(
-                  physics: NeverScrollableScrollPhysics(),
-                  child: Column(
-                    children: <Widget>[
-                      const SizedBox(height: 24),
-                      _buildTopContent(),
-                      //Spacer
-                      const SizedBox(height: 12.0),
-                      _buildBottomContent(),
-                    ],
+      child: AnimatedContainer(
+        curve: !_wasOpen ? ElasticOutCurve(.9) : Curves.elasticOut,
+        duration: Duration(milliseconds: !_wasOpen ? 1200 : 1500),
+        height: cardHeight,
+        child: RoundedShadow.fromRadius(
+          12.0,
+          child: Container(
+            color: Color(0xff303238),
+            child: Stack(
+              children: <Widget>[
+                //Card Content
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
+                  child: SingleChildScrollView(
+                    physics: NeverScrollableScrollPhysics(),
+                    child: Column(
+                      children: <Widget>[
+                        const SizedBox(height: 24),
+                        _buildTopContent(),
+                        //Spacer
+                        const SizedBox(height: 12.0),
+                        _buildBottomContent(),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
