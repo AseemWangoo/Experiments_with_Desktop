@@ -5,11 +5,15 @@ import 'package:flutter/material.dart';
 class LiquidSimulation {
   int curveCount = 4;
 
+  // FILLED IN _updateControlPointsFromTweens fxn... Reqd for QBC
   List<Offset> ctrlPts = [];
-  List<Offset> endPts = [];
+  List<Offset> endPts = []; // FILLED IN start fxn... Reqd for QBC
 
   List<Animation<double>> ctrlTweens = [];
   final ElasticOutCurve _ease = ElasticOutCurve(.3);
+
+  double hzScale;
+  double hzOffset;
 
   // Y beause we animating the y-axis...
   void start(AnimationController controller, bool flipY) {
@@ -17,6 +21,26 @@ class LiquidSimulation {
 
     // Calculate gap between each ctrl/end pt....1/8 = 0.125
     var gap = 1 / (curveCount * 2.0);
+
+    // Randomly scale and offset each simulation, for more variety
+    hzScale = 1.25 + Random().nextDouble() * .5;
+    hzOffset = -.2 + Random().nextDouble() * .4;
+
+    //Create end points, these sit at yPos=0, and don't animate
+    endPts.clear();
+    //For n curves, we need n + 2 endpoints
+    //Create first end point
+
+    endPts.insert(
+      0,
+      Offset.zero,
+    ); //Start at 0,0 NEEDED FOR QUAD. BEZIER CURVE...
+
+    for (var i = 1; i < curveCount; i++) {
+      endPts.add(Offset(gap * i * 2, 0));
+    }
+    //Last endpoint at 1,0
+    endPts.add(Offset(1, 0));
 
     // Always 4..
     for (var i = 0; i < curveCount; i++) {
@@ -57,6 +81,8 @@ class LiquidSimulation {
 
       ctrlPts[i] = Offset(o.dx, ctrlTweens[i].value);
     }
+
+    // print('$ctrlPts');
 
     return ctrlPts;
   }
@@ -101,6 +127,9 @@ class LiquidPainter extends CustomPainter {
     double offsetY,
     Color color,
   ) {
+    // canvas.scale(simulation.hzScale, 1);
+    // canvas.translate(simulation.hzOffset * size.width, offsetY);
+
     // Create a path around bottom and sides of card >>>>> THIS ONLY FILLS THE CARD WITH WAVE...
     var path = Path()
       ..moveTo(size.width * 1.25, 0)
@@ -108,8 +137,22 @@ class LiquidPainter extends CustomPainter {
       ..lineTo(-size.width * .25, size.height)
       ..lineTo(-size.width * .25, 0);
 
+    // // 4 times.
+    // THIS LOOP MAKES the Waves like QBC...
+    for (var i = 0; i < simulation.curveCount; i++) {
+      var ctrlPt = sizeOffset(simulation.ctrlPts[i], size);
+      var endPt = sizeOffset(simulation.endPts[i + 1], size);
+      path.quadraticBezierTo(ctrlPt.dx, ctrlPt.dy, endPt.dx, endPt.dy);
+    }
+
     canvas.drawPath(path, Paint()..color = color);
+
+    // canvas.translate(-simulation.hzOffset * size.width, -offsetY);
+    // canvas.scale(1 / simulation.hzScale, 1);
   }
+
+  Offset sizeOffset(Offset pt, Size size) =>
+      Offset(pt.dx * size.width, waveHeight * pt.dy);
 
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
