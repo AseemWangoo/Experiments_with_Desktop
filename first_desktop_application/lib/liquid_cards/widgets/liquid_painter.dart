@@ -122,7 +122,6 @@ class LiquidPainter extends CustomPainter {
     );
   }
 
-  //TODO: FILL THIS >>>>
   void _drawLiquidSim(
     LiquidSimulation simulation,
     Canvas canvas,

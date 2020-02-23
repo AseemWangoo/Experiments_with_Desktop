@@ -57,6 +57,14 @@ class _DrinkListCardState extends State<DrinkListCard>
         curve: Interval(.12, .45, curve: Curves.easeOut),
       ),
     );
+
+    // Tween to animate the 'points remaining' text
+    _pointsTween = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(
+        parent: _liquidSimController,
+        curve: Interval(.1, .5, curve: Curves.easeOutQuart),
+      ),
+    );
   }
 
   @override
@@ -67,8 +75,13 @@ class _DrinkListCardState extends State<DrinkListCard>
 
   @override
   Widget build(BuildContext context) {
-    //Determine the points required text value, using the _pointsTween
+    // Determine the points required text value, using the _pointsTween
+    // THIS DECREASES THE POINTS...
     var pointsRequired = widget.drinkData.requiredPoints;
+    var pointsValue = pointsRequired -
+        _pointsTween.value * min(widget.earnedPoints, pointsRequired);
+
+    // print('>>> $pointsValue');
 
     // print('IS OPEN >>>> ${widget.isOpen}');
     if (widget.isOpen != _wasOpen) {
@@ -132,8 +145,16 @@ class _DrinkListCardState extends State<DrinkListCard>
                         //Spacer
                         const SizedBox(height: 12.0),
 
-                        // Wrap this with A.O
-                        _buildBottomContent(),
+                        /// Wrap this with A.O
+                        /// If dont wrap, then you see the text there..
+                        AnimatedOpacity(
+                          duration: Duration(
+                            milliseconds: widget.isOpen ? 1000 : 500,
+                          ),
+                          curve: Curves.easeOut,
+                          opacity: widget.isOpen ? 1 : 0,
+                          child: _buildBottomContent(pointsValue),
+                        ),
                       ],
                     ),
                   ),
@@ -173,37 +194,62 @@ class _DrinkListCardState extends State<DrinkListCard>
     );
   }
 
-  Row _buildTopContent() => Row(
-        children: <Widget>[
-          //Icon
-          Image.asset(
-            "assets/images/" + widget.drinkData.iconImage,
-            fit: BoxFit.fitWidth,
-            width: 50.0,
+  Row _buildTopContent() {
+    return Row(
+      children: <Widget>[
+        //Icon
+        Image.asset(
+          "assets/images/" + widget.drinkData.iconImage,
+          fit: BoxFit.fitWidth,
+          width: 50.0,
+        ),
+        SizedBox(width: 24),
+        //Label
+        Expanded(
+          child: Text(
+            widget.drinkData.title.toUpperCase(),
+            style: Styles.text(18, Colors.white, true),
           ),
-          SizedBox(width: 24),
-          //Label
-          Expanded(
-            child: Text(
-              widget.drinkData.title.toUpperCase(),
-              style: Styles.text(18, Colors.white, true),
-            ),
-          ),
-          //Star Icon
-          Icon(Icons.star, size: 20, color: AppColors.orangeAccent),
-          SizedBox(width: 4),
-          //Points Text
-          Text(
-            "${widget.drinkData.requiredPoints}",
-            style: Styles.text(20, Colors.white, true),
-          )
-        ],
-      );
+        ),
+        //Star Icon
+        Icon(Icons.star, size: 20, color: AppColors.orangeAccent),
+        SizedBox(width: 4),
+        //Points Text
+        Text(
+          "${widget.drinkData.requiredPoints}",
+          style: Styles.text(20, Colors.white, true),
+        )
+      ],
+    );
+  }
 
-  // TODO Add param
-  Column _buildBottomContent() {
+  Column _buildBottomContent(double pointsValue) {
+    List<Widget> rowChildren = [];
+
+    if (pointsValue == 0) {
+      rowChildren.add(
+        Text("Congratulations!", style: Styles.text(16, Colors.white, true)),
+      );
+    } else {
+      rowChildren.addAll([
+        Text("You're only ", style: Styles.text(12, Colors.white, false)),
+        Text(
+          " ${pointsValue.round()} ",
+          style: Styles.text(16, AppColors.orangeAccent, true),
+        ),
+        Text(
+          " points away",
+          style: Styles.text(12, Colors.white, false),
+        ),
+      ]);
+    }
+
     return Column(
       children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: rowChildren,
+        ),
         SizedBox(height: 16),
         Text(
           "Redeem your points for a cup of happiness! Our signature espresso is blanced with steamed milk and topped with a light layer of foam. ",
