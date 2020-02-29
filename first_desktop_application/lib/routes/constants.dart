@@ -12,3 +12,5 @@ const String solarSystemRoute = '/solarsystem';
 const String flippingRoute = '/flipping';
 
 const String inkingRoute = '/inking';
+
+const String liquidCardsRoute = '/liquidCards';

@@ -43,6 +43,11 @@ class Home extends StatelessWidget {
                       buttonText: 'Inking',
                       onTap: () => Navigator.pushNamed(context, inkingRoute),
                     ),
+                    OptionButton(
+                      buttonText: 'LiquidCards',
+                      onTap: () =>
+                          Navigator.pushNamed(context, liquidCardsRoute),
+                    ),
                   ],
                 ),
               ),

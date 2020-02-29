@@ -17,6 +17,8 @@ dependencies:
   flare_flutter: ^1.7.3
   intl: ^0.16.1
 
+  get_it: ^3.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -57,3 +59,10 @@ flutter:
       fonts:
         - asset: fonts/Merriweather-Bold.otf
         - asset: fonts/Merriweather-Black.otf
+    - family: Poppins
+      fonts:
+        - asset: fonts/Poppins-Regular.ttf
+        - asset: fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Poppins-Bold.ttf
+          weight: 700
