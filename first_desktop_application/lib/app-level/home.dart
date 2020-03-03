@@ -13,12 +13,7 @@ class Home extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            FlareActor(
-              'assets/animations/spaceman.flr',
-              alignment: Alignment.centerLeft,
-              fit: BoxFit.cover,
-              animation: 'Untitled',
-            ),
+            _BgWidget(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
@@ -55,6 +50,20 @@ class Home extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _BgWidget extends StatelessWidget {
+  const _BgWidget({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FlareActor(
+      'assets/animations/spaceman.flr',
+      alignment: Alignment.centerLeft,
+      fit: BoxFit.cover,
+      animation: 'Untitled',
     );
   }
 }
