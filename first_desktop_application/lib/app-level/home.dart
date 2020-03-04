@@ -43,6 +43,11 @@ class Home extends StatelessWidget {
                       onTap: () =>
                           Navigator.pushNamed(context, liquidCardsRoute),
                     ),
+                    OptionButton(
+                      buttonText: 'TravelCards',
+                      onTap: () =>
+                          Navigator.pushNamed(context, travelCardsRoute),
+                    ),
                   ],
                 ),
               ),
