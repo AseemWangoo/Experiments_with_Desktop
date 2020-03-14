@@ -19,3 +19,15 @@ doc/api/
 *.js_
 *.js.deps
 *.js.map
+
+first_desktop_application/macos/Flutter/GeneratedPluginRegistrant.swift
+
+first_desktop_application/macos/Flutter/Flutter-Debug.xcconfig
+
+first_desktop_application/.flutter-plugins-dependencies
+
+first_desktop_application/macos/Podfile.lock
+
+first_desktop_application/macos/Runner.xcodeproj/project.pbxproj
+
+first_desktop_application/macos/Runner.xcworkspace/contents.xcworkspacedata

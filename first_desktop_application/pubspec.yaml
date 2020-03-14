@@ -19,6 +19,13 @@ dependencies:
 
   get_it: ^3.1.0
 
+  # YOUR OWN PLUGIN, the name of my plugin is `init_dsktp_plugin`
+  init_dsktp_plugin:
+    git:
+      url: https://github.com/AseemWangoo/plugins.git
+      path: ./init_dsktp_plugin
+      ref: develop
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
