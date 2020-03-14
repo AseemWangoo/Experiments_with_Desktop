@@ -1,6 +1,6 @@
+import 'package:first_desktop_application/app-level/widgets/bg_widget.dart';
 import 'package:first_desktop_application/app-level/widgets/option_name.dart';
 import 'package:first_desktop_application/routes/constants.dart';
-import 'package:flare_flutter/flare_actor.dart';
 
 import 'package:flutter/material.dart';
 
@@ -13,12 +13,7 @@ class Home extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            FlareActor(
-              'assets/animations/spaceman.flr',
-              alignment: Alignment.centerLeft,
-              fit: BoxFit.cover,
-              animation: 'Untitled',
-            ),
+            BgWidget(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
@@ -48,6 +43,11 @@ class Home extends StatelessWidget {
                       onTap: () =>
                           Navigator.pushNamed(context, liquidCardsRoute),
                     ),
+                    // OptionButton(
+                    //   buttonText: 'TravelCards',
+                    //   onTap: () =>
+                    //       Navigator.pushNamed(context, travelCardsRoute),
+                    // ),
                   ],
                 ),
               ),
