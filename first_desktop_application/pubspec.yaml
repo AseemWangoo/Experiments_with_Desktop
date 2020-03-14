@@ -24,7 +24,6 @@ dependencies:
     git:
       url: https://github.com/AseemWangoo/plugins.git
       path: ./init_dsktp_plugin
-      ref: develop
 
 dev_dependencies:
   flutter_test:
