@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:first_desktop_application/flipping/data/demo_data.dart';
-import 'package:first_desktop_application/flipping/widgets/custom-app-bar.dart';
+import 'package:first_desktop_application/flipping/widgets/custom_app_bar.dart';
 import 'package:first_desktop_application/flipping/widgets/ticket.dart';
 
 import 'package:flutter/material.dart';
