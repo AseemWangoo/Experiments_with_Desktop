@@ -23,6 +23,9 @@
 [![GDG-SG 2019](https://img.shields.io/badge/GDG--SG-2019-red)](https://events.withgoogle.com/devfest-singapore-2019/speakers/#content)
 [![Meetup FlutterSG](https://img.shields.io/badge/Meetup-FlutterSG-red)](https://www.meetup.com/Singapore-Flutter-Meetup/events/past/)
 
+### FlutterX
+[![FlutterxX](https://img.shields.io/badge/FlutterX-Article-blue)](https://flutterx.com/flutter-web-and-slivers-2020-08-02)
+
 ### FlutterTap
 [![Flutter Tap](https://img.shields.io/badge/FlutterTap-%2343-blue)](https://fluttertap.com/issue-43/) 
 
