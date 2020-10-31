@@ -31,7 +31,7 @@ class _OptionButtonState extends State<OptionButton>
     super.initState();
 
     _animControlSatellite = AnimationController(
-      duration: Duration(seconds: 30),
+      duration: const Duration(seconds: 30),
       vsync: this,
     );
 
@@ -63,27 +63,26 @@ class _OptionButtonState extends State<OptionButton>
         //
 
         return CustomPaint(
-          child: child,
           foregroundPainter: _CircularPainter(
             indicatorColor: Colors.cyan,
             indicatorPosition: _rotateAnimSatellite.value,
           ),
+          child: child,
         );
       },
-      child: Container(
+      child: SizedBox(
         height: 100.0,
         width: 100.0,
         child: RawMaterialButton(
           onPressed: widget.onTap,
+          shape: const CircleBorder(),
+          // fillColor: Colors.white,
+          padding: const EdgeInsets.all(10.0),
           child: Text(
             widget.buttonText,
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
-          shape: CircleBorder(),
-          elevation: 2.0,
-          // fillColor: Colors.white,
-          padding: const EdgeInsets.all(10.0),
         ),
       ),
     );
@@ -116,7 +115,7 @@ class _CircularPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final outerThickness = max(trackWidth, max(strokeWidth, indicatorSize));
-    Size constrainedSize = Size(
+    final Size constrainedSize = Size(
       size.width - outerThickness,
       size.height - outerThickness,
     );

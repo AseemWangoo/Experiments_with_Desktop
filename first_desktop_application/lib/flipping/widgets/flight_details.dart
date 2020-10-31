@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 class FlightDetails extends StatelessWidget {
   final BoardingPassData boardingPass;
 
-  TextStyle get titleTextStyle => TextStyle(
+  TextStyle get titleTextStyle => const TextStyle(
         fontFamily: 'OpenSans',
         fontSize: 11,
         height: 1,
@@ -14,7 +14,7 @@ class FlightDetails extends StatelessWidget {
         color: Color(0xffafafaf),
       );
 
-  TextStyle get contentTextStyle => TextStyle(
+  TextStyle get contentTextStyle => const TextStyle(
         fontFamily: 'Oswald',
         fontSize: 16,
         height: 1.8,

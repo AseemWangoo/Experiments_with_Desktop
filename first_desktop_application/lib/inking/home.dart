@@ -26,8 +26,8 @@ class Home extends StatelessWidget {
             return Stack(
               children: [
                 TransitionContainer(
-                  child: DarkInkContent(darkMode: _currentMode),
                   darkModeValue: _currentMode,
+                  child: DarkInkContent(darkMode: _currentMode),
                 ),
                 DarkInkBar(darkModeValue: _currentMode),
                 DarkInkControls(darkModeValue: _currentMode),

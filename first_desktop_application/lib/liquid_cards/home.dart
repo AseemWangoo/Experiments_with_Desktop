@@ -13,15 +13,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  double _listPadding = 20;
+  final double _listPadding = 20;
   DrinkData _selectedDrink;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   List<DrinkData> _drinks;
   int _earnedPoints;
 
   @override
   void initState() {
-    var demoData = DemoData();
+    final demoData = DemoData();
     _drinks = demoData.drinks;
     _earnedPoints = demoData.earnedPoints;
     super.initState();
@@ -30,13 +30,13 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     //
-    bool isLandscape = MediaQuery.of(context).size.aspectRatio > 1;
-    double headerHeight =
+    final bool isLandscape = MediaQuery.of(context).size.aspectRatio > 1;
+    final double headerHeight =
         MediaQuery.of(context).size.height * (isLandscape ? .25 : .2);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Liquid Cards')),
-      backgroundColor: Color(0xff22222b),
+      appBar: AppBar(title: const Text('Liquid Cards')),
+      backgroundColor: const Color(0xff22222b),
       body: Theme(
         data: ThemeData(fontFamily: "Poppins", primarySwatch: Colors.orange),
         child: Stack(
@@ -44,7 +44,6 @@ class _HomeState extends State<Home> {
             ListView.builder(
               padding: EdgeInsets.only(bottom: 40, top: headerHeight + 10),
               itemCount: _drinks.length,
-              scrollDirection: Axis.vertical,
               controller: _scrollController,
               itemBuilder: (context, index) => _buildListItem(index),
             ),
@@ -63,8 +62,8 @@ class _HomeState extends State<Home> {
       child: RoundedShadow(
         topLeftRadius: 0,
         topRightRadius: 0,
-        shadowColor: Color(0x0).withAlpha(65),
-        child: Container(
+        shadowColor: const Color(0x00000000).withAlpha(65),
+        child: SizedBox(
           width: double.infinity,
           child: Image.asset(
             "assets/images/Header-Dark.png",
@@ -134,19 +133,19 @@ class _HomeState extends State<Home> {
         _selectedDrink = null;
       } else {
         _selectedDrink = data;
-        int selectedIndex = _drinks.indexOf(_selectedDrink);
+        final int selectedIndex = _drinks.indexOf(_selectedDrink);
 
-        double closedHeight = DrinkListCard.nominalHeightClosed;
+        final double closedHeight = DrinkListCard.nominalHeightClosed;
 
         // ADJUST SCROLLER >>>>
-        var offset =
+        final offset =
             selectedIndex * (closedHeight + _listPadding) - closedHeight * .35;
 
         // print('Offset >> $offset');
 
         _scrollController.animateTo(
           offset,
-          duration: Duration(milliseconds: 700),
+          duration: const Duration(milliseconds: 700),
           curve: Curves.easeOutQuad,
         );
       }

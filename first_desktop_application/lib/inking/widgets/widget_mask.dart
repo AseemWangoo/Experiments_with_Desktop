@@ -69,6 +69,7 @@ class RenderWidgetMask extends RenderStack {
     if (firstChild == null) return;
 
     // Skip painting the maskChild
+    // ignore: prefer_function_declarations_over_variables
     final paintContent = (PaintingContext context, Offset offset) {
       RenderBox child = (firstChild.parentData as StackParentData).nextSibling;
 
@@ -82,6 +83,7 @@ class RenderWidgetMask extends RenderStack {
     };
 
     // Here, we paint the masked child.....
+    // ignore: prefer_function_declarations_over_variables
     final paintMaskedChild = (PaintingContext context, Offset offset) {
       context.paintChild(
         firstChild,
@@ -91,6 +93,7 @@ class RenderWidgetMask extends RenderStack {
 
     /// Rect myRect = Offset.zero & const Size(100.0, 100.0);
     /// same as: Rect.fromLTWH(0.0, 0.0, 100.0, 100.0)
+    // ignore: prefer_function_declarations_over_variables
     final paintAll = (PaintingContext context, Offset offset) {
       paintContent(context, offset);
       context.canvas.saveLayer(

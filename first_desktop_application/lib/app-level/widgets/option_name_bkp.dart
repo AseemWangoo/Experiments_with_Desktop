@@ -61,12 +61,13 @@ class _OptionButtonState extends State<OptionButton>
   void initState() {
     super.initState();
     _animControlPlanet = AnimationController(
-      duration: Duration(seconds: 30),
+      duration: const Duration(seconds: 30),
       vsync: this,
     );
 
     _rotateAnimPlanet = Tween(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _animControlPlanet, curve: Interval(0.0, 1.0)),
+      CurvedAnimation(
+          parent: _animControlPlanet, curve: const Interval(0.0, 1.0)),
     );
 
     _rotateAnimPlanet.addListener(() {
@@ -74,7 +75,7 @@ class _OptionButtonState extends State<OptionButton>
     });
 
     _animControlSatellite = AnimationController(
-      duration: Duration(seconds: 10),
+      duration: const Duration(seconds: 10),
       vsync: this,
     );
 
@@ -101,8 +102,17 @@ class _OptionButtonState extends State<OptionButton>
     return Container(
       margin: const EdgeInsets.all(15.0),
       child: CustomPaint(
+        foregroundPainter: RadialSeekBarPainter(
+          trackWidth: 3.0,
+          trackColor: Colors.orange,
+          progressWidth: 0.0,
+          progressColor: Colors.transparent,
+          progressPercent: 0.8,
+          thumbSize: 15.0,
+          thumbColor: Colors.cyan,
+          thumbPosition: _rotateAnimSatellite.value,
+        ),
         child: RotationTransition(
-          alignment: Alignment.center,
           turns: _animControlPlanet,
           // child: RaisedButton(
           //   padding: const EdgeInsets.all(8.0),
@@ -121,22 +131,11 @@ class _OptionButtonState extends State<OptionButton>
           // ),
           child: RawMaterialButton(
             onPressed: () {},
-            child: Text(widget.buttonText),
-            shape: new CircleBorder(),
-            elevation: 2.0,
+            shape: const CircleBorder(),
             fillColor: Colors.white,
             padding: const EdgeInsets.all(15.0),
+            child: Text(widget.buttonText),
           ),
-        ),
-        foregroundPainter: RadialSeekBarPainter(
-          trackWidth: 3.0,
-          trackColor: Colors.orange,
-          progressWidth: 0.0,
-          progressColor: Colors.transparent,
-          progressPercent: 0.8,
-          thumbSize: 15.0,
-          thumbColor: Colors.cyan,
-          thumbPosition: _rotateAnimSatellite.value,
         ),
       ),
     );
@@ -155,12 +154,12 @@ class RadialSeekBarPainter extends CustomPainter {
 
   RadialSeekBarPainter({
     @required this.trackWidth,
-    @required trackColor,
+    @required Color trackColor,
     @required this.progressWidth,
-    @required progressColor,
+    @required Color progressColor,
     @required this.progressPercent,
     @required this.thumbSize,
-    @required thumbColor,
+    @required Color thumbColor,
     @required this.thumbPosition,
   })  : trackPaint = Paint()
           ..color = trackColor
@@ -178,7 +177,7 @@ class RadialSeekBarPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final outerThickness = max(trackWidth, max(progressWidth, thumbSize));
-    Size constrainedSize = Size(
+    final Size constrainedSize = Size(
       size.width - outerThickness,
       size.height - outerThickness,
     );

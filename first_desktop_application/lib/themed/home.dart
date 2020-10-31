@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:first_desktop_application/themed/models/theme_model.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key}) : super(key: key);
+  const MyHomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +28,12 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text('Yayyy, I am running on desktop !!! '),
-            SizedBox(
+            const Text('Yayyy, I am running on desktop !!! '),
+            const SizedBox(
               width: 200.0,
               height: 200.0,
               child: FlareActor(
                 'assets/animations/bob.flr',
-                alignment: Alignment.center,
                 fit: BoxFit.cover,
                 animation: 'Stand',
               ),

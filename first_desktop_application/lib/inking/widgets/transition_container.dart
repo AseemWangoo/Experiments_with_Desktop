@@ -7,7 +7,7 @@ class TransitionContainer extends StatefulWidget {
 
   final bool darkModeValue;
 
-  TransitionContainer({
+  const TransitionContainer({
     Key key,
     this.child,
     this.darkModeValue,
@@ -33,9 +33,9 @@ class _TransitionContainerState extends State<TransitionContainer>
   @override
   void initState() {
     _images = [
-      AssetImage('assets/images/ink_mask.png'),
-      AssetImage('assets/images/wipe_mask.png'),
-      AssetImage('assets/images/tendril_mask.png'),
+      const AssetImage('assets/images/ink_mask.png'),
+      const AssetImage('assets/images/wipe_mask.png'),
+      const AssetImage('assets/images/tendril_mask.png'),
     ];
 
     _controller = AnimationController(
@@ -94,8 +94,8 @@ class _TransitionContainerState extends State<TransitionContainer>
     // CLicked on dark mode, index = 2 (2 >=3)
     // print('>>>> Image ${_images[_currentImageIndex]} >>> $_currentImageIndex');
 
-    List<Widget> children = <Widget>[
-      Container(
+    final List<Widget> children = <Widget>[
+      SizedBox(
         width: width,
         height: height,
         child: _childBackground ?? widget.child, // Changed line....
@@ -105,13 +105,8 @@ class _TransitionContainerState extends State<TransitionContainer>
     if (_childForeground != null) {
       children.add(
         WidgetMask(
-          child: Container(
-            width: width,
-            height: height,
-            child: _childForeground,
-          ),
           // Wrapping with Container VVIP..
-          maskChild: Container(
+          maskChild: SizedBox(
             width: width,
             height: height,
             child: AnimatedBuilder(
@@ -125,6 +120,11 @@ class _TransitionContainerState extends State<TransitionContainer>
                 );
               },
             ),
+          ),
+          child: SizedBox(
+            width: width,
+            height: height,
+            child: _childForeground,
           ),
         ),
       );

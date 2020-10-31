@@ -1,10 +1,9 @@
+import 'dart:math';
+
 import 'package:first_desktop_application/liquid_cards/data/demo_data.dart';
 import 'package:first_desktop_application/liquid_cards/styles/styles.dart';
 import 'package:first_desktop_application/liquid_cards/widgets/liquid_painter.dart';
 import 'package:first_desktop_application/liquid_cards/widgets/rounded_shadow.dart';
-
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 class DrinkListCard extends StatefulWidget {
@@ -37,15 +36,15 @@ class _DrinkListCardState extends State<DrinkListCard>
 
   AnimationController _liquidSimController;
 
-  LiquidSimulation _liquidSim1 = LiquidSimulation();
-  LiquidSimulation _liquidSim2 = LiquidSimulation();
+  final LiquidSimulation _liquidSim1 = LiquidSimulation();
+  final LiquidSimulation _liquidSim2 = LiquidSimulation();
 
   @override
   void initState() {
     super.initState();
     _liquidSimController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 3000),
+      duration: const Duration(milliseconds: 3000),
     );
 
     _liquidSimController.addListener(_rebuildIfOpen);
@@ -54,7 +53,7 @@ class _DrinkListCardState extends State<DrinkListCard>
     _fillTween = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _liquidSimController,
-        curve: Interval(.12, .45, curve: Curves.easeOut),
+        curve: const Interval(.12, .45, curve: Curves.easeOut),
       ),
     );
 
@@ -62,7 +61,7 @@ class _DrinkListCardState extends State<DrinkListCard>
     _pointsTween = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: _liquidSimController,
-        curve: Interval(.1, .5, curve: Curves.easeOutQuart),
+        curve: const Interval(.1, .5, curve: Curves.easeOutQuart),
       ),
     );
   }
@@ -77,8 +76,8 @@ class _DrinkListCardState extends State<DrinkListCard>
   Widget build(BuildContext context) {
     // Determine the points required text value, using the _pointsTween
     // THIS DECREASES THE POINTS...
-    var pointsRequired = widget.drinkData.requiredPoints;
-    var pointsValue = pointsRequired -
+    final pointsRequired = widget.drinkData.requiredPoints;
+    final pointsValue = pointsRequired -
         _pointsTween.value * min(widget.earnedPoints, pointsRequired);
 
     // print('>>> $pointsValue');
@@ -103,41 +102,41 @@ class _DrinkListCardState extends State<DrinkListCard>
 
     /// widget.earnedPoints -> always same 150.0
     /// Value is taken min. b/w 1 and the division...(as animation max value is 1.0)
-    double _maxFillLevel = min(
+    final double _maxFillLevel = min(
       1,
       widget.earnedPoints / widget.drinkData.requiredPoints,
     );
 
-    double fillLevel = _maxFillLevel;
+    final double fillLevel = _maxFillLevel;
 
-    double cardHeight = widget.isOpen
+    final double cardHeight = widget.isOpen
         ? DrinkListCard.nominalHeightOpen
         : DrinkListCard.nominalHeightClosed;
 
     return GestureDetector(
       onTap: _handleTap,
       child: AnimatedContainer(
-        curve: !_wasOpen ? ElasticOutCurve(.9) : Curves.elasticOut,
+        curve: !_wasOpen ? const ElasticOutCurve(.9) : Curves.elasticOut,
         duration: Duration(milliseconds: !_wasOpen ? 1200 : 1500),
         height: cardHeight,
         child: RoundedShadow.fromRadius(
           12.0,
           child: Container(
-            color: Color(0xff303238),
+            color: const Color(0xff303238),
             child: Stack(
               children: <Widget>[
                 // RESPONSIBLE FOR OPACITY FOR THE WAVES..
                 AnimatedOpacity(
                   opacity: widget.isOpen ? 1 : 0,
-                  duration: Duration(milliseconds: 500),
+                  duration: const Duration(milliseconds: 500),
                   child: _buildLiquidBackground(_maxFillLevel, fillLevel),
                 ),
 
                 //Card Content
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 24, vertical: 0),
+                  margin: const EdgeInsets.symmetric(horizontal: 24),
                   child: SingleChildScrollView(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     child: Column(
                       children: <Widget>[
                         const SizedBox(height: 24),
@@ -199,11 +198,11 @@ class _DrinkListCardState extends State<DrinkListCard>
       children: <Widget>[
         //Icon
         Image.asset(
-          "assets/images/" + widget.drinkData.iconImage,
+          "assets/images/${widget.drinkData.iconImage}",
           fit: BoxFit.fitWidth,
           width: 50.0,
         ),
-        SizedBox(width: 24),
+        const SizedBox(width: 24),
         //Label
         Expanded(
           child: Text(
@@ -213,7 +212,7 @@ class _DrinkListCardState extends State<DrinkListCard>
         ),
         //Star Icon
         Icon(Icons.star, size: 20, color: AppColors.orangeAccent),
-        SizedBox(width: 4),
+        const SizedBox(width: 4),
         //Points Text
         Text(
           "${widget.drinkData.requiredPoints}",
@@ -224,7 +223,7 @@ class _DrinkListCardState extends State<DrinkListCard>
   }
 
   Column _buildBottomContent(double pointsValue) {
-    List<Widget> rowChildren = [];
+    final List<Widget> rowChildren = [];
 
     if (pointsValue == 0) {
       rowChildren.add(
@@ -250,7 +249,7 @@ class _DrinkListCardState extends State<DrinkListCard>
           mainAxisAlignment: MainAxisAlignment.center,
           children: rowChildren,
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         Text(
           "Redeem your points for a cup of happiness! Our signature espresso is blanced with steamed milk and topped with a light layer of foam. ",
           textAlign: TextAlign.center,

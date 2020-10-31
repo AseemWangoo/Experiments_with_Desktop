@@ -17,11 +17,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       leading: GestureDetector(
-        child: Icon(Icons.arrow_back, color: appBarIconsColor),
         onTap: () => Navigator.pop(context),
+        child: Icon(Icons.arrow_back, color: appBarIconsColor),
       ),
       brightness: Brightness.light,
-      backgroundColor: Color(0xFFf0f0f0),
+      backgroundColor: const Color(0xFFf0f0f0),
       elevation: 0,
       title: Container(
         width: double.infinity,

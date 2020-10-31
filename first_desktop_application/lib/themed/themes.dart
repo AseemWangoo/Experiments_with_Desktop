@@ -10,24 +10,24 @@ class AppTheme {
   static const Color _darkPrimaryAppBarColor = Colors.white;
 
   static final lightTheme = ThemeData(
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       color: _lightPrimaryColor,
       iconTheme: IconThemeData(color: _lightOnPrimaryColor),
     ),
     fontFamily: 'Roboto',
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       bodyText2: TextStyle(color: Colors.black),
     ),
   );
 
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: _darkPrimaryColor,
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       color: _darkPrimaryAppBarColor,
       iconTheme: IconThemeData(color: _darkPrimaryColor),
     ),
     fontFamily: 'Roboto',
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       bodyText2: TextStyle(color: Colors.white),
     ),
   );
