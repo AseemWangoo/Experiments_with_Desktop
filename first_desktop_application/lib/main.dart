@@ -1,7 +1,7 @@
 import 'package:first_desktop_application/app-level/services/root_service.dart';
 import 'package:first_desktop_application/locator.dart';
 import 'package:first_desktop_application/routes/constants.dart';
-import 'package:first_desktop_application/routes/routes.dart';
+import 'package:first_desktop_application/routes/routes.dart' as routes;
 import 'package:first_desktop_application/themed/models/theme_model.dart';
 import 'package:first_desktop_application/themed/themes.dart';
 
@@ -17,7 +17,7 @@ void main() {
 
   runApp(
     ChangeNotifierProvider<ThemeSwitcher>(
-      builder: (_) => ThemeSwitcher(),
+      create: (_) => ThemeSwitcher(),
       child: MyApp(key: locator<RootService>().rootKey),
     ),
   );
@@ -54,7 +54,7 @@ class MyAppState extends State<MyApp> {
                 darkTheme: AppTheme.darkTheme,
                 themeMode:
                     _model.darkModeOn() ? ThemeMode.dark : ThemeMode.light,
-                onGenerateRoute: Router.generateRoute,
+                onGenerateRoute: routes.Router.generateRoute,
               );
       },
     );

@@ -8,7 +8,7 @@ class WidgetMask extends Stack {
     AlignmentGeometry alignment = AlignmentDirectional.topStart,
     TextDirection textDirection,
     StackFit fit = StackFit.loose,
-    Overflow overflow = Overflow.clip,
+    Clip overflow = Clip.hardEdge,
     @required Widget maskChild,
     @required Widget child,
   }) : super(
@@ -16,7 +16,7 @@ class WidgetMask extends Stack {
           alignment: alignment,
           textDirection: textDirection,
           fit: fit,
-          overflow: overflow,
+          clipBehavior: overflow,
           children: [maskChild, child],
         );
 
@@ -28,11 +28,10 @@ class WidgetMask extends Stack {
   @override
   RenderStack createRenderObject(BuildContext context) {
     return RenderWidgetMask(
-      alignment: alignment,
-      textDirection: textDirection ?? Directionality.of(context),
-      fit: fit,
-      overflow: overflow,
-    );
+        alignment: alignment,
+        textDirection: textDirection ?? Directionality.of(context),
+        fit: fit,
+        overflow: clipBehavior);
   }
 
   // USING `RenderWidgetMask` instead of RenderStack
@@ -42,7 +41,7 @@ class WidgetMask extends Stack {
       ..alignment = alignment
       ..textDirection = textDirection ?? Directionality.of(context)
       ..fit = fit
-      ..overflow = overflow;
+      ..clipBehavior = clipBehavior;
   }
 }
 
@@ -52,13 +51,13 @@ class RenderWidgetMask extends RenderStack {
     AlignmentGeometry alignment,
     TextDirection textDirection,
     StackFit fit,
-    Overflow overflow,
+    Clip overflow,
   }) : super(
           children: children,
           alignment: alignment,
           textDirection: textDirection,
           fit: fit,
-          overflow: overflow,
+          clipBehavior: overflow,
         );
 
   // USES defaultPaint(context, offset);

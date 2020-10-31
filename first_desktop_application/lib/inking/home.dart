@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       body: ChangeNotifierProvider<TransitionModel>(
-        builder: (_) => TransitionModel(),
+        create: (_) => TransitionModel(),
         child: Consumer<TransitionModel>(
           builder: (_, model, __) {
             //
