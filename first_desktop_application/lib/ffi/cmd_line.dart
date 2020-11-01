@@ -3,10 +3,10 @@ import 'dart:ffi' as ffi;
 import 'package:ffi/ffi.dart';
 
 // C header typedef:
-typedef SystemC = ffi.Int32 Function(ffi.Pointer<Utf8> command);
+typedef SystemC = ffi.Void Function(ffi.Pointer<Utf8> command);
 
 // Dart header typedef
-typedef SystemDart = int Function(ffi.Pointer<Utf8> command);
+typedef SystemDart = void Function(ffi.Pointer<Utf8> command);
 
 void main() {
   final sysLib = openSystemLibraryMacOS();
@@ -20,20 +20,24 @@ ffi.DynamicLibrary openSystemLibraryMacOS() {
   return systemDyLib;
 }
 
-int processCommand(ffi.DynamicLibrary sysLib, String command) {
+void processCommand(ffi.DynamicLibrary sysLib, String command) {
   /// Helper that combines lookup and cast to a Dart function.
+  /// Originally lookup
+  /// Looks up a symbol in the DynamicLibrary and returns its address in memory. Equivalent of dlsym.
+
   final sysFunc =
       sysLib.lookupFunction<SystemC, SystemDart>(Dylibs.systemSymbolName);
 
+  // print(sysFunc.runtimeType);
+
   /// Convert a [String] to a Utf8-encoded null-terminated C string.
+  /// Returns a malloc-allocated pointer to the result.
   final cmd = Utf8.toUtf8(command);
 
-  final result = sysFunc(cmd);
+  sysFunc(cmd);
 
   /// Releases memory on the native heap.
   free(cmd);
-
-  return result;
 }
 
 class Dylibs {

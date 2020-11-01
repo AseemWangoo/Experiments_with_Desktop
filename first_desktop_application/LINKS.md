@@ -42,3 +42,5 @@
 - Dart FFI (https://api.dart.dev/dev/2.12.0-8.0.dev/dart-ffi/dart-ffi-library.html)
 
 - FFI (https://medium.com/flutter-community/build-and-deploy-native-c-libraries-with-flutter-cc7531d590b5)
+
+- https://medium.com/flutter-community/how-to-call-a-rust-function-from-dart-using-ffi-f48f3ea3af2c
