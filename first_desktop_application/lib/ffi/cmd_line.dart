@@ -12,8 +12,7 @@ void main() {
   final sysLib = openSystemLibraryMacOS();
   // print(sysLib.handle);
 
-  int resp = processCommand(sysLib, Commands.recentLogin);
-  print('Resp $resp');
+  processCommand(sysLib, Commands.recentLogin);
 }
 
 ffi.DynamicLibrary openSystemLibraryMacOS() {
@@ -22,13 +21,18 @@ ffi.DynamicLibrary openSystemLibraryMacOS() {
 }
 
 int processCommand(ffi.DynamicLibrary sysLib, String command) {
+  /// Helper that combines lookup and cast to a Dart function.
   final sysFunc =
       sysLib.lookupFunction<SystemC, SystemDart>(Dylibs.systemSymbolName);
 
+  /// Convert a [String] to a Utf8-encoded null-terminated C string.
   final cmd = Utf8.toUtf8(command);
+
   final result = sysFunc(cmd);
 
+  /// Releases memory on the native heap.
   free(cmd);
+
   return result;
 }
 
