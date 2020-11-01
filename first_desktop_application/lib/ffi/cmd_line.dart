@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:ffi' as ffi;
 
 import 'package:ffi/ffi.dart';
@@ -8,7 +10,9 @@ typedef SystemC = ffi.Void Function(ffi.Pointer<Utf8> command);
 // Dart header typedef
 typedef SystemDart = void Function(ffi.Pointer<Utf8> command);
 
-void main() {
+void main(List<String> args) {
+  print(args);
+  // TODO(aseem): Read this https://pub.dev/packages/args
   final sysLib = openSystemLibraryMacOS();
   // print(sysLib.handle);
 
