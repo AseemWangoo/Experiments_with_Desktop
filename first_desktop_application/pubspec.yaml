@@ -1,10 +1,10 @@
 name: first_desktop_application
 description: Hands on With Desktop application.
 
-version: 0.1.0
+version: 0.1.0+1
 
 environment:
-  sdk: ">=2.5.2 <3.0.0"
+  sdk: ">=2.6.0 <3.0.0"
 
   flutter: ">=1.10.2-pre.54"
 
@@ -12,11 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  provider: ^3.1.0+1
+  # FFI
+  ffi: ^0.1.3
 
   flare_flutter: ^1.7.3
-  intl: ^0.16.1
-
   get_it: ^3.1.0
 
   # YOUR OWN PLUGIN, the name of my plugin is `init_dsktp_plugin`
@@ -26,6 +25,10 @@ dependencies:
       path: ./init_dsktp_plugin
   # init_dsktp_plugin:
   #   path: ../../../../Packages/plugins/init_dsktp_plugin
+
+  intl: ^0.16.1
+
+  provider: ^3.1.0+1
 
 dev_dependencies:
   flutter_test:
