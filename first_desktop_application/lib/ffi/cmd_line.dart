@@ -4,12 +4,16 @@ import 'dart:ffi' as ffi;
 
 import 'package:ffi/ffi.dart';
 
+import 'utils/ffi_helpers.dart';
+
 // C header typedef:
 typedef SystemC = ffi.Void Function(ffi.Pointer<Utf8> command);
 
 // Dart header typedef
 typedef SystemDart = void Function(ffi.Pointer<Utf8> command);
 
+// Navigate to lib/ffi
+// Run `dart cmd_line.dart`
 void main(List<String> args) {
   print(args);
   // TODO(aseem): Read this https://pub.dev/packages/args
@@ -43,15 +47,3 @@ void processCommand(ffi.DynamicLibrary sysLib, String command) {
   /// Releases memory on the native heap.
   free(cmd);
 }
-
-class Dylibs {
-  static const String systemDyLib = '/usr/lib/libSystem.dylib';
-
-  static const String systemSymbolName = 'system';
-}
-
-class Commands {
-  static const String recentLogin = 'last aseemwangoo';
-}
-
-// nm -a /usr/lib/libSystem.dylib
