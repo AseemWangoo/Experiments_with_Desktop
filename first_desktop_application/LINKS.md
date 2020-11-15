@@ -47,3 +47,7 @@
 
 ### Command Line Apps
 - https://dart.dev/tutorials/server/cmdline
+
+- [Biztoto] https://youtu.be/XoZ01mY-cUg
+
+- [Tensor] https://youtu.be/2hi6dit0n1M
