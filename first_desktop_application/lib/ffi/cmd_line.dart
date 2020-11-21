@@ -18,13 +18,13 @@ Future<void> main(List<String> args) async {
 
   final runner = CommandRunner<dynamic>(
     'last_login',
-    'Info: Know previously logged in timestamps',
+    'Info: Know previously logged in timestamps.\ne.g last_login `username`, where username will be before @ [username@Macbook-Pro].',
   );
 
   runner.addCommand(LastLoginCmd());
 
   final dynamic resp = await runner.run(args).catchError((dynamic exc) {
-    stdout.write('❌ ❌ ❌ Error $exc');
+    stdout.writeln('❌ ❌ ❌ Error $exc');
     exitCode = 1;
   });
 

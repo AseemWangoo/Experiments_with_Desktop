@@ -4,7 +4,7 @@ import 'package:first_desktop_application/ffi/utils/functions.dart';
 
 class LastLoginCmd extends BaseCLICommand {
   final cmdName = 'last_login';
-  final desc = 'Gets the previously logged in data of the user';
+  final desc = 'Shows previously logged in timestamps of the user';
 
   @override
   final loadingMessage = '🤡 🤡 🤡 Executing for the user :';
