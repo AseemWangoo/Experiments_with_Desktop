@@ -52,3 +52,8 @@
 
 - [Tensor] https://youtu.be/2hi6dit0n1M
 - https://youtu.be/kcF-cakpNo8
+
+- [Flutter Medium] https://medium.com/dartlang/dart2native-a76c815e6baf
+- [Workflow] https://github.com/DanTup/dart-native-executables/blob/master/.github/workflows/main.yml
+
+- [Issue] https://github.com/dart-lang/sdk/issues/36915
