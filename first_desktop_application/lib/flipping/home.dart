@@ -23,18 +23,18 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         appBarIconsColor: Color(0xFF212121),
         height: 60.0,
       ),
-      backgroundColor: Color(0xFFf0f0f0),
+      backgroundColor: const Color(0xFFf0f0f0),
       body: Flex(
         direction: Axis.vertical,
         children: [
           Expanded(
             child: ListView.builder(
               controller: _scrollController,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               itemCount: _boardingPasses.length,
               itemBuilder: (context, index) {
                 return Ticket(
@@ -57,28 +57,29 @@ class _HomeState extends State<Home> {
         ? _openTickets.remove(clickedTicket)
         : _openTickets.add(clickedTicket);
 
-    print('Open Tickets >>> ${_openTickets.length}');
+    debugPrint('Open Tickets >>> ${_openTickets.length}');
 
-    double openTicketsOffset =
+    final double openTicketsOffset =
         Ticket.nominalOpenHeight * _getOpenTicketsBefore(clickedTicket);
 
-    double closedTicketsOffset = Ticket.nominalClosedHeight *
+    final double closedTicketsOffset = Ticket.nominalClosedHeight *
         (clickedTicket - _getOpenTicketsBefore(clickedTicket));
 
-    print('OpenTickets $openTicketsOffset ClosedTickets $closedTicketsOffset');
+    debugPrint(
+        'OpenTickets $openTicketsOffset ClosedTickets $closedTicketsOffset');
 
-    double offset = openTicketsOffset +
+    final double offset = openTicketsOffset +
         closedTicketsOffset -
         (Ticket.nominalClosedHeight * .5);
 
     // Scroll to the clicked element
     _scrollController.animateTo(
       max(0, offset),
-      duration: Duration(seconds: 1),
-      curve: Interval(.25, 1, curve: Curves.easeOutQuad),
+      duration: const Duration(seconds: 1),
+      curve: const Interval(.25, 1, curve: Curves.easeOutQuad),
     );
 
-    print('Offset $offset');
+    debugPrint('Offset $offset');
 
     // Return true to stop the notification propagation
     return true;

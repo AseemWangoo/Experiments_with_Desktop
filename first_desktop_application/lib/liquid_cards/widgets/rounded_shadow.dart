@@ -23,7 +23,6 @@ class RoundedShadow extends StatelessWidget {
 
   const RoundedShadow.fromRadius(
     double radius, {
-    Key key,
     this.child,
     this.shadowColor,
   })  : topLeftRadius = radius,
@@ -34,16 +33,16 @@ class RoundedShadow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Create a border radius, only applies to the bottom
-    BorderRadius borderRadius = BorderRadius.only(
+    final BorderRadius borderRadius = BorderRadius.only(
       topLeft: Radius.circular(topLeftRadius),
       topRight: Radius.circular(topRightRadius),
       bottomLeft: Radius.circular(bottomLeftRadius),
       bottomRight: Radius.circular(bottomRightRadius),
     );
 
-    Color sColor = shadowColor ?? Color(0x20000000);
+    final Color sColor = shadowColor ?? const Color(0x20000000);
 
-    double maxRadius = [
+    final double maxRadius = [
       topLeftRadius,
       topRightRadius,
       bottomLeftRadius,

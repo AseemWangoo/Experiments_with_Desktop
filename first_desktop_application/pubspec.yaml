@@ -1,10 +1,10 @@
 name: first_desktop_application
 description: Hands on With Desktop application.
 
-version: 0.1.0
+version: 0.1.0+1
 
 environment:
-  sdk: ">=2.5.2 <3.0.0"
+  sdk: ">=2.6.0 <3.0.0"
 
   flutter: ">=1.10.2-pre.54"
 
@@ -12,11 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  provider: ^3.1.0+1
+  # FFI
+  ffi: ^0.1.3
 
   flare_flutter: ^1.7.3
-  intl: ^0.16.1
-
   get_it: ^3.1.0
 
   # YOUR OWN PLUGIN, the name of my plugin is `init_dsktp_plugin`
@@ -27,18 +26,21 @@ dependencies:
   # init_dsktp_plugin:
   #   path: ../../../../Packages/plugins/init_dsktp_plugin
 
+  intl: ^0.16.1
+
+  provider: ^3.1.0+1
+
+  # Command Line Apps
+  args: ^1.6.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
+  # LINTER
+  lint: ^1.2.0
 
-# The following section is specific to Flutter.
 flutter:
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
 
   assets:

@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
+
+import 'package:flutter/material.dart';
 
 class Sprite extends StatefulWidget {
   final ImageProvider image;
@@ -8,7 +9,7 @@ class Sprite extends StatefulWidget {
   final int frameHeight;
   final num frame;
 
-  Sprite({
+  const Sprite({
     Key key,
     @required this.image,
     @required this.frameWidth,
@@ -44,7 +45,7 @@ class _SpriteState extends State<Sprite> {
 
   void _getImage() {
     final ImageStream oldImageStream = _imageStream;
-    var config = createLocalImageConfiguration(context);
+    final config = createLocalImageConfiguration(context);
 
     _imageStream = widget.image.resolve(config);
     if (_imageStream.key == oldImageStream?.key) {
@@ -62,25 +63,25 @@ class _SpriteState extends State<Sprite> {
 
   @override
   Widget build(BuildContext context) {
-    ui.Image img = _imageInfo?.image;
+    final ui.Image img = _imageInfo?.image;
 
     if (img == null) {
-      return SizedBox();
+      return const SizedBox();
     }
 
-    int imgWidth = img.width;
-    int frame = widget.frame.round();
-    int frameW = widget.frameWidth, frameH = widget.frameHeight;
+    final int imgWidth = img.width;
+    final int frame = widget.frame.round();
+    final int frameW = widget.frameWidth, frameH = widget.frameHeight;
 
-    int cols = (imgWidth / frameW).floor();
-    int col = frame % cols, row = (frame / cols).floor();
+    final int cols = (imgWidth / frameW).floor();
+    final int col = frame % cols, row = (frame / cols).floor();
 
     // print(
     //     '>>>>$imgWidth >>> $frame >>> $frameW >>>> $frameH >>>> $cols >>> $col >>>> $row');
 
     /// frameW and frameH multiplied by 1.0 as it expects double...
     /// first two params ensure the rectangle is drawn one after another...
-    ui.Rect rect = ui.Rect.fromLTWH(
+    final ui.Rect rect = ui.Rect.fromLTWH(
       col * frameW * 1.0, // 0 to 9 * 360,
       row * frameH * 1.0, // 0 to 3 * 720,
       frameW * 1.0,

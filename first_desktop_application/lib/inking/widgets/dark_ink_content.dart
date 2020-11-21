@@ -5,21 +5,20 @@ import 'package:flutter/material.dart';
 class DarkInkContent extends StatelessWidget {
   final bool darkMode;
 
-  //TODO: Add scroll
+  // TODO(Aseem): Add scroll
 
   const DarkInkContent({Key key, this.darkMode = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final lightTextColor = Color(0xFFBCFEEA);
-    final lightSubHeaderColor = Color(0xFF00EBAC);
-    final darkSubHeaderColor = Color(0xFF008F9C);
-    final darkTextColor = Color(0xFF210A3B);
+    const lightTextColor = Color(0xFFBCFEEA);
+    const lightSubHeaderColor = Color(0xFF00EBAC);
+    const darkSubHeaderColor = Color(0xFF008F9C);
+    const darkTextColor = Color(0xFF210A3B);
 
     return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
       child: Container(
-        color: darkMode ? Color(0xFF313466) : Color(0xFFFFFFFF),
+        color: darkMode ? const Color(0xFF313466) : const Color(0xFFFFFFFF),
         padding: const EdgeInsets.all(37.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +33,7 @@ class DarkInkContent extends StatelessWidget {
                 decoration: TextDecoration.none,
               ),
             ),
-            Padding(padding: const EdgeInsets.only(top: 24.0)),
+            const Padding(padding: EdgeInsets.only(top: 24.0)),
             Text(
               InkingConstants.subHeaderText,
               style: TextStyle(
@@ -44,12 +43,13 @@ class DarkInkContent extends StatelessWidget {
                 decoration: TextDecoration.none,
               ),
             ),
-            Padding(padding: const EdgeInsets.only(top: 12)),
+            const Padding(padding: EdgeInsets.only(top: 12)),
             Container(
               height: 1.0,
-              color: darkMode ? Color(0x510098A3) : Color(0x512B777E),
+              color:
+                  darkMode ? const Color(0x510098A3) : const Color(0x512B777E),
             ),
-            Padding(padding: const EdgeInsets.only(top: 24.0)),
+            const Padding(padding: EdgeInsets.only(top: 24.0)),
             Text(
               InkingConstants.bodyText,
               style: TextStyle(
@@ -62,7 +62,7 @@ class DarkInkContent extends StatelessWidget {
                 decoration: TextDecoration.none,
               ),
             ),
-            Padding(padding: const EdgeInsets.only(top: 64.0)),
+            const Padding(padding: EdgeInsets.only(top: 64.0)),
           ],
         ),
       ),

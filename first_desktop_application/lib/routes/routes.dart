@@ -20,28 +20,29 @@ class Router {
       //Begin...
 
       case homeRoute:
-        return MaterialPageRoute(builder: (_) => Home());
+        return MaterialPageRoute<dynamic>(builder: (_) => Home());
 
       case themingRoute:
-        return MaterialPageRoute(builder: (_) => MyHomePage());
+        return MaterialPageRoute<dynamic>(builder: (_) => const MyHomePage());
 
       case solarSystemRoute:
-        return MaterialPageRoute(builder: (_) => ss.Home());
+        return MaterialPageRoute<dynamic>(builder: (_) => ss.Home());
 
       case flippingRoute:
-        return MaterialPageRoute(builder: (_) => flipping.Home());
+        return MaterialPageRoute<dynamic>(
+            builder: (_) => const flipping.Home());
 
       case inkingRoute:
-        return MaterialPageRoute(builder: (_) => inking.Home());
+        return MaterialPageRoute<dynamic>(builder: (_) => const inking.Home());
 
       case liquidCardsRoute:
-        return MaterialPageRoute(builder: (_) => liquid.Home());
+        return MaterialPageRoute<dynamic>(builder: (_) => const liquid.Home());
 
       case travelCardsRoute:
-        return MaterialPageRoute(builder: (_) => travel.Home());
+        return MaterialPageRoute<dynamic>(builder: (_) => const travel.Home());
 
       default:
-        return MaterialPageRoute(
+        return MaterialPageRoute<dynamic>(
           builder: (_) => Scaffold(
             body: Center(
               child: Text('No route defined for ${settings.name}'),

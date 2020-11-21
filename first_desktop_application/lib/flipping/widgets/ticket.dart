@@ -32,7 +32,8 @@ class _TicketState extends State<Ticket> {
 
   Widget get backCard => Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4.0), color: Color(0xffdce6ef)),
+            borderRadius: BorderRadius.circular(4.0),
+            color: const Color(0xffdce6ef)),
       );
 
   @override
@@ -41,7 +42,7 @@ class _TicketState extends State<Ticket> {
     _isOpen = false;
     frontCard = FlightSummary(boardingPass: widget.boardingPass);
     middleCard = FlightDetails(boardingPass: widget.boardingPass);
-    bottomCard = FlightBarcode();
+    bottomCard = const FlightBarcode();
   }
 
   @override

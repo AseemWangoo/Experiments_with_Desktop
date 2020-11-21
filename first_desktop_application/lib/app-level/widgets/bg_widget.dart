@@ -13,7 +13,7 @@ class BgWidget extends StatelessWidget {
     return Stack(
       alignment: AlignmentDirectional.center,
       children: <Widget>[
-        FlareActor(
+        const FlareActor(
           'assets/animations/spaceman.flr',
           alignment: Alignment.centerLeft,
           fit: BoxFit.cover,
@@ -48,7 +48,7 @@ class _CustomText extends StatelessWidget {
 
     return Text(
       data,
-      style: TextStyle(
+      style: const TextStyle(
         color: Colors.white,
         fontSize: 24.0,
       ),

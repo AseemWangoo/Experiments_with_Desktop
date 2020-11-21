@@ -15,7 +15,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(seconds: 50),
+      duration: const Duration(seconds: 50),
       vsync: this,
     )..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
@@ -34,7 +34,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    Offset _offset = Offset(0.3, -0.9);
+    const Offset _offset = Offset(0.3, -0.9);
     timeDilation = 2.0;
 
     final _height = ScreenQueries.instance.height(context);
@@ -43,7 +43,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
-      backgroundColor: Color(0xFF050303),
+      backgroundColor: const Color(0xFF050303),
       body: Center(
         child: Transform(
           alignment: FractionalOffset.centerLeft,
@@ -64,8 +64,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Navigator.pop(context),
-        label: Text('Back'),
-        icon: Icon(Icons.arrow_back),
+        label: const Text('Back'),
+        icon: const Icon(Icons.arrow_back),
         backgroundColor: Colors.black,
       ),
     );

@@ -13,13 +13,12 @@ class Home extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            BgWidget(),
+            const BgWidget(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     OptionButton(
                       buttonText: 'Theming',

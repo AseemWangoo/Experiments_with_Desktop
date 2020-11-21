@@ -8,7 +8,8 @@ class FoldingTicket extends StatefulWidget {
   final List<FoldEntry> entries;
   final Duration duration;
 
-  FoldingTicket({this.duration, @required this.entries, this.isOpen = false});
+  const FoldingTicket(
+      {this.duration, @required this.entries, this.isOpen = false});
 
   @override
   _FoldingTicketState createState() => _FoldingTicketState();
@@ -21,7 +22,7 @@ class _FoldingTicketState extends State<FoldingTicket>
   List<FoldEntry> _entries;
 
   double get openHeight =>
-      _entries.fold(0.0, (val, o) => val + o.height) +
+      _entries.fold<double>(0.0, (val, o) => val + o.height) +
       FoldingTicket.padding * 2;
 
   double get closedHeight => _entries[0].height + FoldingTicket.padding * 2;
@@ -53,7 +54,7 @@ class _FoldingTicketState extends State<FoldingTicket>
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(FoldingTicket.padding),
+      padding: const EdgeInsets.all(FoldingTicket.padding),
       // Shifts the height..
       height: closedHeight +
           (openHeight - closedHeight) * Curves.easeOut.transform(_ratio),
@@ -74,19 +75,19 @@ class _FoldingTicketState extends State<FoldingTicket>
 
   Widget _buildEntry(int index, [double offset = 0.0]) {
     // Fxn to handle the folding...
-    int count = _entries.length - 1;
-    FoldEntry entry = _entries[index];
-    double ratio = max(0.0, min(1.0, _ratio * count + 1.0 - index * 1.0));
+    final int count = _entries.length - 1;
+    final FoldEntry entry = _entries[index];
+    final double ratio = max(0.0, min(1.0, _ratio * count + 1.0 - index * 1.0));
 
     // Intelligently playing with recursion..
-    Matrix4 mtx = Matrix4.identity()
+    final Matrix4 mtx = Matrix4.identity()
       ..setEntry(3, 2, 0.001)
       ..setEntry(1, 2, 0.2)
       ..translate(0.0, offset)
       ..rotateX(pi * (ratio - 1.0));
 
     // If one child, no need for stack...
-    Widget card = SizedBox(
+    final Widget card = SizedBox(
         height: entry.height, child: ratio < 0.5 ? entry.back : entry.front);
 
     return Transform(

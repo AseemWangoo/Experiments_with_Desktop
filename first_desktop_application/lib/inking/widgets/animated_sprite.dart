@@ -6,7 +6,7 @@ class AnimatedSprite extends AnimatedWidget {
   final int frameHeight;
   final ImageProvider image;
 
-  AnimatedSprite({
+  const AnimatedSprite({
     Key key,
     @required this.image,
     @required Animation<double> animation,

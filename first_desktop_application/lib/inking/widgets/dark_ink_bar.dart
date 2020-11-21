@@ -14,8 +14,8 @@ class DarkInkBar extends StatefulWidget {
 
 class _DarkInkBarState extends State<DarkInkBar>
     with SingleTickerProviderStateMixin {
-  static final Color darkColor = Color(0xFF171137);
-  static final Color lightColor = Color(0xFF67ECDC);
+  static Color darkColor = const Color(0xFF171137);
+  static Color lightColor = const Color(0xFF67ECDC);
 
   AnimationController _controller;
   Animation<double> _iconOpacityAnimation;
@@ -118,14 +118,14 @@ class _DarkInkBarState extends State<DarkInkBar>
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     textColor: foregroundColor,
-                    child: Icon(Icons.arrow_back_ios),
+                    child: const Icon(Icons.arrow_back_ios),
                   ),
                   FlatButton(
-                    onPressed: () => {},
+                    onPressed: () {},
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     textColor: foregroundColor,
-                    child: ImageIcon(AssetImage(
+                    child: const ImageIcon(AssetImage(
                       'assets/images/icon-r.png',
                     )),
                   ),
@@ -143,7 +143,7 @@ class _DarkInkBarState extends State<DarkInkBar>
                         // SOLVING FIRST LOAD ISSUE...
                         if (_model.isFirstLoad) {
                           _darkModeToggleIconImage =
-                              AssetImage('assets/images/icon-moon.png');
+                              const AssetImage('assets/images/icon-moon.png');
                         } else {
                           _darkModeToggleIconImage = _updateIcon();
                         }
@@ -161,7 +161,9 @@ class _DarkInkBarState extends State<DarkInkBar>
           ),
           Container(
             height: 2,
-            color: widget.darkModeValue ? Color(0xFF0098A3) : Color(0xFF2B777E),
+            color: widget.darkModeValue
+                ? const Color(0xFF0098A3)
+                : const Color(0xFF2B777E),
           ),
         ],
       ),
@@ -178,10 +180,10 @@ class _DarkInkBarState extends State<DarkInkBar>
   ImageProvider<dynamic> _updateIcon() {
     if (_controller.value < 0.5) {
       return _darkModeToggleIconImage =
-          AssetImage('assets/images/icon-sun.png');
+          const AssetImage('assets/images/icon-sun.png');
     } else {
       return _darkModeToggleIconImage =
-          AssetImage('assets/images/icon-moon.png');
+          const AssetImage('assets/images/icon-moon.png');
     }
   }
 

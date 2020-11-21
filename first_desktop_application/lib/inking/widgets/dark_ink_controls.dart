@@ -133,13 +133,13 @@ class _DarkInkControlsState extends State<DarkInkControls>
             child: FloatingActionButton(
               mini: true,
               heroTag: 0,
-              onPressed: () => {},
+              onPressed: () {},
               backgroundColor: _backgroundColor,
               foregroundColor: _foregroundColor,
-              child: Icon(Icons.bookmark_border),
+              child: const Icon(Icons.bookmark_border),
             ),
           ),
-          Padding(padding: EdgeInsets.all(10)),
+          const Padding(padding: EdgeInsets.all(10)),
           AnimatedBuilder(
             animation: _buttonAnimation1,
             builder: (context, child) {
@@ -154,13 +154,13 @@ class _DarkInkControlsState extends State<DarkInkControls>
             child: FloatingActionButton(
               mini: true,
               heroTag: 1,
-              onPressed: () => {},
+              onPressed: () {},
               backgroundColor: _backgroundColor,
               foregroundColor: _foregroundColor,
-              child: Icon(Icons.more_horiz),
+              child: const Icon(Icons.more_horiz),
             ),
           ),
-          Padding(padding: EdgeInsets.all(10)),
+          const Padding(padding: EdgeInsets.all(10)),
           AnimatedBuilder(
             animation: _buttonAnimation2,
             builder: (context, child) {
@@ -175,10 +175,10 @@ class _DarkInkControlsState extends State<DarkInkControls>
             child: FloatingActionButton(
               heroTag: 2,
               mini: true,
-              onPressed: () => {},
+              onPressed: () {},
               backgroundColor: _backgroundColor,
               foregroundColor: _foregroundColor,
-              child: Icon(Icons.arrow_forward),
+              child: const Icon(Icons.arrow_forward),
             ),
           ),
         ],
@@ -194,8 +194,8 @@ class _DarkInkControlsState extends State<DarkInkControls>
 
   // OTHER FXNS
   void _updateColor() {
-    final darkColor = Color(0xFF171137);
-    final lightColor = Color(0xFF67ECDC);
+    const darkColor = Color(0xFF171137);
+    const lightColor = Color(0xFF67ECDC);
     _backgroundColor = widget.darkModeValue ? darkColor : lightColor;
     _foregroundColor = widget.darkModeValue ? lightColor : darkColor;
   }

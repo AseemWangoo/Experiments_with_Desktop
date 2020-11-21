@@ -18,21 +18,21 @@ class FlightSummary extends StatelessWidget {
   Color get mainTextColor {
     Color textColor;
     if (theme == SummaryTheme.dark) textColor = Colors.white;
-    if (theme == SummaryTheme.light) textColor = Color(0xFF083e64);
+    if (theme == SummaryTheme.light) textColor = const Color(0xFF083e64);
     return textColor;
   }
 
   Color get secondaryTextColor {
     Color textColor;
-    if (theme == SummaryTheme.dark) textColor = Color(0xff61849c);
-    if (theme == SummaryTheme.light) textColor = Color(0xFF838383);
+    if (theme == SummaryTheme.dark) textColor = const Color(0xff61849c);
+    if (theme == SummaryTheme.light) textColor = const Color(0xFF838383);
     return textColor;
   }
 
   Color get separatorColor {
     Color color;
-    if (theme == SummaryTheme.light) color = Color(0xffeaeaea);
-    if (theme == SummaryTheme.dark) color = Color(0xff396583);
+    if (theme == SummaryTheme.light) color = const Color(0xffeaeaea);
+    if (theme == SummaryTheme.dark) color = const Color(0xff396583);
     return color;
   }
 
@@ -65,7 +65,6 @@ class FlightSummary extends StatelessWidget {
                     child: _buildTicketOrigin(),
                   ),
                   Align(
-                    alignment: Alignment.center,
                     child: _buildTicketDuration(),
                   ),
                   Align(
@@ -83,15 +82,16 @@ class FlightSummary extends StatelessWidget {
   }
 
   Decoration _getBackgroundDecoration() {
-    if (theme == SummaryTheme.light)
+    if (theme == SummaryTheme.light) {
       return BoxDecoration(
         borderRadius: BorderRadius.circular(4.0),
         color: Colors.white,
       );
+    }
 
     return BoxDecoration(
       borderRadius: BorderRadius.circular(4.0),
-      image: DecorationImage(
+      image: const DecorationImage(
         image: AssetImage('assets/images/bg_blue.png'),
         fit: BoxFit.cover,
       ),
@@ -115,7 +115,7 @@ class FlightSummary extends StatelessWidget {
 
   Widget _buildLogoHeader() {
     //
-    if (theme == SummaryTheme.light)
+    if (theme == SummaryTheme.light) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -133,6 +133,7 @@ class FlightSummary extends StatelessWidget {
               ))
         ],
       );
+    }
 
     return Padding(
       padding: const EdgeInsets.only(top: 2.0),
@@ -148,9 +149,9 @@ class FlightSummary extends StatelessWidget {
     );
   }
 
-  Widget _buildTicketHeader(context) {
+  Widget _buildTicketHeader(BuildContext context) {
     //
-    final _style = TextStyle(
+    const _style = TextStyle(
       fontFamily: 'OpenSans',
       fontWeight: FontWeight.bold,
       fontSize: 11,
@@ -183,48 +184,47 @@ class FlightSummary extends StatelessWidget {
 
   Widget _buildTicketDuration() {
     String planeRoutePath;
-    if (theme == SummaryTheme.light)
+    if (theme == SummaryTheme.light) {
       planeRoutePath = 'assets/images/planeroute_blue.png';
-    if (theme == SummaryTheme.dark)
+    }
+    if (theme == SummaryTheme.dark) {
       planeRoutePath = 'assets/images/planeroute_white.png';
+    }
 
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Container(
-            width: 120,
-            height: 58,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Image.asset(planeRoutePath, fit: BoxFit.cover),
-                if (theme == SummaryTheme.light)
-                  Image.asset(
-                    'assets/images/airplane_blue.png',
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        SizedBox(
+          width: 120,
+          height: 58,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Image.asset(planeRoutePath, fit: BoxFit.cover),
+              if (theme == SummaryTheme.light)
+                Image.asset(
+                  'assets/images/airplane_blue.png',
+                  height: 20,
+                  fit: BoxFit.contain,
+                ),
+              if (theme == SummaryTheme.dark)
+                _AnimatedSlideToRight(
+                  isOpen: isOpen,
+                  child: Image.asset(
+                    'assets/images/airplane_white.png',
                     height: 20,
                     fit: BoxFit.contain,
                   ),
-                if (theme == SummaryTheme.dark)
-                  _AnimatedSlideToRight(
-                    child: Image.asset(
-                      'assets/images/airplane_white.png',
-                      height: 20,
-                      fit: BoxFit.contain,
-                    ),
-                    isOpen: isOpen,
-                  )
-              ],
-            ),
+                )
+            ],
           ),
-          Text(
-            boardingPass.duration.toString(),
-            textAlign: TextAlign.center,
-            style: bodyTextStyle,
-          ),
-        ],
-      ),
+        ),
+        Text(
+          boardingPass.duration.toString(),
+          textAlign: TextAlign.center,
+          style: bodyTextStyle,
+        ),
+      ],
     );
   }
 
@@ -264,7 +264,7 @@ class _AnimatedSlideToRightState extends State<_AnimatedSlideToRight>
   void initState() {
     super.initState();
     _controller = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 1700));
+        vsync: this, duration: const Duration(milliseconds: 1700));
   }
 
   @override
@@ -277,7 +277,8 @@ class _AnimatedSlideToRightState extends State<_AnimatedSlideToRight>
   Widget build(BuildContext context) {
     if (widget.isOpen) _controller.forward(from: 0);
     return SlideTransition(
-      position: Tween(begin: Offset(-2, 0), end: Offset(1, 0)).animate(
+      position:
+          Tween(begin: const Offset(-2, 0), end: const Offset(1, 0)).animate(
         CurvedAnimation(curve: Curves.easeOutQuad, parent: _controller),
       ),
       child: widget.child,

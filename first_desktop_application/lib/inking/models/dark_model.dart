@@ -9,11 +9,12 @@ class TransitionModel with ChangeNotifier {
 
   bool get currentMode => _darkModeOn;
 
+  // ignore: avoid_positional_boolean_parameters
   void switchMode(bool darkMode) {
     _isFirstLoad = false;
     notifyListeners();
 
-    this._darkModeOn = darkMode;
+    _darkModeOn = darkMode;
     notifyListeners();
   }
 }

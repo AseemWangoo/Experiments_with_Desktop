@@ -7,8 +7,9 @@ class ThemeSwitcher with ChangeNotifier {
 
   bool darkModeOn() => _darkModeOn;
 
+  // ignore: avoid_positional_boolean_parameters
   void turnOnDarkMode(bool darkMode) {
-    this._darkModeOn = darkMode;
+    _darkModeOn = darkMode;
     notifyListeners();
   }
 }

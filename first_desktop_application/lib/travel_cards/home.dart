@@ -8,9 +8,9 @@ class Home extends StatelessWidget {
     //
 
     return Scaffold(
-      appBar: AppBar(title: Text('Travel Cards')),
-      backgroundColor: Color(0xff22222b),
-      body: Placeholder(),
+      appBar: AppBar(title: const Text('Travel Cards')),
+      backgroundColor: const Color(0xff22222b),
+      body: const Placeholder(),
     );
   }
 }

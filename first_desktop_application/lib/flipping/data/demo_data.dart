@@ -50,13 +50,13 @@ class _Duration {
 }
 
 class DemoData {
-  List<BoardingPassData> _boardingPasses = [
+  final List<BoardingPassData> _boardingPasses = [
     BoardingPassData(
         passengerName: 'Ms. Jane Doe',
         origin: _Airport(code: 'YEG', city: 'Edmonton'),
         destination: _Airport(code: 'LAX', city: 'Los Angeles'),
         duration: _Duration(hours: 3, minutes: 30),
-        boardingTime: TimeOfDay(hour: 7, minute: 10),
+        boardingTime: const TimeOfDay(hour: 7, minute: 10),
         departs: DateTime(2019, 10, 17, 23, 45),
         arrives: DateTime(2019, 10, 18, 02, 15),
         gate: '50',
@@ -69,7 +69,7 @@ class DemoData {
         origin: _Airport(code: 'YYC', city: 'Calgary'),
         destination: _Airport(code: 'YOW', city: 'Ottawa'),
         duration: _Duration(hours: 3, minutes: 50),
-        boardingTime: TimeOfDay(hour: 12, minute: 15),
+        boardingTime: const TimeOfDay(hour: 12, minute: 15),
         departs: DateTime(2019, 10, 17, 23, 45),
         arrives: DateTime(2019, 10, 18, 02, 15),
         gate: '22',
@@ -82,7 +82,7 @@ class DemoData {
         origin: _Airport(code: 'YEG', city: 'Edmonton'),
         destination: _Airport(code: 'MEX', city: 'Mexico'),
         duration: _Duration(hours: 4, minutes: 15),
-        boardingTime: TimeOfDay(hour: 16, minute: 45),
+        boardingTime: const TimeOfDay(hour: 16, minute: 45),
         departs: DateTime(2019, 10, 17, 23, 45),
         arrives: DateTime(2019, 10, 18, 02, 15),
         gate: '30',
@@ -95,7 +95,7 @@ class DemoData {
         origin: _Airport(code: 'YYC', city: 'Calgary'),
         destination: _Airport(code: 'YOW', city: 'Ottawa'),
         duration: _Duration(hours: 3, minutes: 50),
-        boardingTime: TimeOfDay(hour: 12, minute: 15),
+        boardingTime: const TimeOfDay(hour: 12, minute: 15),
         departs: DateTime(2019, 10, 17, 23, 45),
         arrives: DateTime(2019, 10, 18, 02, 15),
         gate: '22',
@@ -105,9 +105,9 @@ class DemoData {
         flightNumber: 'AC237'),
   ];
 
-  get boardingPasses => _boardingPasses;
+  List<BoardingPassData> get boardingPasses => _boardingPasses;
 
-  getBoardingPass(int index) {
+  BoardingPassData getBoardingPass(int index) {
     return _boardingPasses.elementAt(index);
   }
 }

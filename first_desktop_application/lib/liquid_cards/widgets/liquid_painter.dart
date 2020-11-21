@@ -10,17 +10,18 @@ class LiquidSimulation {
   List<Offset> endPts = []; // FILLED IN start fxn... Reqd for QBC
 
   List<Animation<double>> ctrlTweens = [];
-  final ElasticOutCurve _ease = ElasticOutCurve(.3);
+  final ElasticOutCurve _ease = const ElasticOutCurve(.3);
 
   double hzScale;
   double hzOffset;
 
   // Y beause we animating the y-axis...
+  // ignore: avoid_positional_boolean_parameters
   void start(AnimationController controller, bool flipY) {
     controller.addListener(_updateControlPointsFromTweens);
 
     // Calculate gap between each ctrl/end pt....1/8 = 0.125
-    var gap = 1 / (curveCount * 2.0);
+    final gap = 1 / (curveCount * 2.0);
 
     // Randomly scale and offset each simulation, for more variety
     hzScale = 1.25 + Random().nextDouble() * .5;
@@ -40,7 +41,7 @@ class LiquidSimulation {
       endPts.add(Offset(gap * i * 2, 0));
     }
     //Last endpoint at 1,0
-    endPts.add(Offset(1, 0));
+    endPts.add(const Offset(1, 0));
 
     // PERF TIP...
     ctrlPts.clear();
@@ -48,11 +49,11 @@ class LiquidSimulation {
     // Always 4..
     for (var i = 0; i < curveCount; i++) {
       // Randomize this variable....
-      var height = (.5 + Random().nextDouble() * .5) *
+      final height = (.5 + Random().nextDouble() * .5) *
           (i % 2 == 0 ? 1 : -1) *
           (flipY ? -1 : 1);
 
-      var animSequence = TweenSequence([
+      final animSequence = TweenSequence([
         TweenSequenceItem<double>(
           tween: Tween<double>(begin: 0, end: 0),
           weight: 10.0,
@@ -80,7 +81,7 @@ class LiquidSimulation {
 
   List<Offset> _updateControlPointsFromTweens() {
     for (var i = 0; i < ctrlPts.length; i++) {
-      var o = ctrlPts[i];
+      final o = ctrlPts[i];
 
       ctrlPts[i] = Offset(o.dx, ctrlTweens[i].value);
     }
@@ -111,14 +112,14 @@ class LiquidPainter extends CustomPainter {
       canvas,
       size,
       0,
-      Color(0xffC48D3B).withOpacity(.4),
+      const Color(0xffC48D3B).withOpacity(.4),
     );
     _drawLiquidSim(
       simulation2,
       canvas,
       size,
       5,
-      Color(0xff9D7B32).withOpacity(.4),
+      const Color(0xff9D7B32).withOpacity(.4),
     );
   }
 
@@ -133,7 +134,7 @@ class LiquidPainter extends CustomPainter {
     // canvas.translate(simulation.hzOffset * size.width, offsetY);
 
     // Create a path around bottom and sides of card >>>>> THIS ONLY FILLS THE CARD WITH WAVE...
-    var path = Path()
+    final path = Path()
       ..moveTo(size.width * 1.25, 0)
       ..lineTo(size.width * 1.25, size.height)
       ..lineTo(-size.width * .25, size.height)
@@ -142,8 +143,8 @@ class LiquidPainter extends CustomPainter {
     // // 4 times.
     // THIS LOOP MAKES the Waves like QBC...
     for (var i = 0; i < simulation.curveCount; i++) {
-      var ctrlPt = sizeOffset(simulation.ctrlPts[i], size);
-      var endPt = sizeOffset(simulation.endPts[i + 1], size);
+      final ctrlPt = sizeOffset(simulation.ctrlPts[i], size);
+      final endPt = sizeOffset(simulation.endPts[i + 1], size);
       path.quadraticBezierTo(ctrlPt.dx, ctrlPt.dy, endPt.dx, endPt.dy);
     }
 
