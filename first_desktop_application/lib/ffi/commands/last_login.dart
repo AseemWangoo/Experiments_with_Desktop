@@ -7,7 +7,7 @@ class LastLoginCmd extends BaseCLICommand {
   final desc = 'Gets the previously logged in data of the user';
 
   @override
-  final loadingMessage = 'Executing the command';
+  final loadingMessage = '🤡 🤡 🤡 Executing for the user :';
 
   @override
   String get description => desc;
@@ -20,7 +20,7 @@ class LastLoginCmd extends BaseCLICommand {
     final FFIFunc ffiInstance = FFIFunc();
     final sysLib = ffiInstance.openSystemLibraryMacOS();
 
-    ffiInstance.processCommand(sysLib, Commands.recentLogin);
+    ffiInstance.processCommand(sysLib, Commands.recentLogin(arg));
   }
 
   @override

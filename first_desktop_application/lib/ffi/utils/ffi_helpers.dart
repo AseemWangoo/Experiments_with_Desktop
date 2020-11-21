@@ -5,6 +5,6 @@ class Dylibs {
 }
 
 class Commands {
-  static const String recentLogin = 'last aseemwangoo';
+  static String recentLogin(String userName) => 'last $userName';
 }
 // nm -a /usr/lib/libSystem.dylib
