@@ -1,11 +1,12 @@
 name: first_desktop_application
 description: Hands on With Desktop application.
 
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
 version: 0.1.0+1
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
-
+  sdk: ">=2.8.0 <3.0.0"
   flutter: ">=1.10.2-pre.54"
 
 dependencies:

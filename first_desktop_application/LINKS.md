@@ -57,3 +57,15 @@
 - [Workflow] https://github.com/DanTup/dart-native-executables/blob/master/.github/workflows/main.yml
 
 - [Issue] https://github.com/dart-lang/sdk/issues/36915
+
+https://stackoverflow.com/questions/38201797/how-to-use-dylib-library-and-hpp-header-file-in-ios-project/38203901#38203901
+
+### Dart FFI
+- https://drive.google.com/file/d/1jh1rOE1YuSPT_kgqwYMcS1ciGUj8H2lN/view
+- https://youtu.be/s4o_qjqpKDI
+- https://github.com/dart-lang/ffi/blob/master/example/main.dart
+- https://github.com/dart-lang/samples/tree/master/ffi
+
+
+### CMake
+- https://youtu.be/7W4Q-XLnMaA

@@ -1,4 +1,5 @@
 import 'package:first_desktop_application/app-level/services/root_service.dart';
+import 'package:first_desktop_application/library/library.dart';
 import 'package:first_desktop_application/locator.dart';
 import 'package:first_desktop_application/routes/constants.dart';
 import 'package:first_desktop_application/routes/routes.dart' as routes;
@@ -10,10 +11,12 @@ import 'package:flutter/foundation.dart'
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+Future<void> main() async {
   debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
 
   setupLocator();
+
+  LibraryTest().open();
 
   runApp(
     ChangeNotifierProvider<ThemeSwitcher>(
