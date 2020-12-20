@@ -76,6 +76,9 @@ https://stackoverflow.com/questions/38201797/how-to-use-dylib-library-and-hpp-he
 - `cmake .` and then `make`
 - Follow steps at `https://flutter.dev/docs/development/platform-integration/c-interop#compiled-dynamic-library-macos`
 
+- If you don't see your dylib in VSCode, then try adding the dylib from desktop.
+- Once added, remove the reference from desktop
+
 ### Disable Hardened Runtime in Apple
 - In the DebugProfile.entitlements
 `

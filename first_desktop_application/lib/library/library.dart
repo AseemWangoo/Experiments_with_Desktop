@@ -34,6 +34,24 @@ class LibraryTest {
     hello();
   }
 
+  void inputFromFlutterToC(String input) {
+    final sysLib = ffi.DynamicLibrary.open('libfetchtemp.dylib');
+
+    final helloFromC =
+        sysLib.lookupFunction<SystemCHello, SystemDartHello>('sayHello');
+
+    // Pass input
+    final name = Utf8.toUtf8(input);
+
+    // Call the function
+    final res = helloFromC(name);
+
+    // Convert resp into string
+    final strRes = Utf8.fromUtf8(res);
+    // ignore: avoid_print
+    print(strRes);
+  }
+
   void openFromCLI() {
     final sysLib = ffi.DynamicLibrary.open('./dylib/libhello.dylib');
 
