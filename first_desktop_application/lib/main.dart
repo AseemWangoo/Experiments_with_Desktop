@@ -17,7 +17,8 @@ Future<void> main() async {
   setupLocator();
 
   // LibraryTest().openFromFlutter();
-  LibraryTest().inputFromFlutterToC('Aseem Wangoo');
+  // LibraryTest().inputFromFlutterToC('Aseem Wangoo');
+  LibraryTest().filesFromFlutter();
 
   runApp(
     ChangeNotifierProvider<ThemeSwitcher>(

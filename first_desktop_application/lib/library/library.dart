@@ -52,6 +52,15 @@ class LibraryTest {
     print(strRes);
   }
 
+  void filesFromFlutter() {
+    final sysLib = ffi.DynamicLibrary.open('libfetchtemp.dylib');
+
+    final tempFiles =
+        sysLib.lookupFunction<SystemC, SystemDart>('fetchtemp_files');
+    // Call the function
+    tempFiles();
+  }
+
   void openFromCLI() {
     final sysLib = ffi.DynamicLibrary.open('./dylib/libhello.dylib');
 
