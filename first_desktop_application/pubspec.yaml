@@ -19,6 +19,9 @@ dependencies:
   flare_flutter: ^1.7.3
   get_it: ^3.1.0
 
+  # FONTS
+  font_awesome_flutter: ^8.11.0
+
   # YOUR OWN PLUGIN, the name of my plugin is `init_dsktp_plugin`
   init_dsktp_plugin:
     git:
