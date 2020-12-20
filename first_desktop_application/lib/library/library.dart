@@ -1,5 +1,7 @@
 import 'dart:ffi' as ffi;
 
+import 'package:ffi/ffi.dart';
+
 typedef hello_world_func = ffi.Void Function();
 // Dart type definition for calling the C foreign function
 typedef HelloWorld = void Function();
@@ -10,9 +12,15 @@ typedef SystemC = ffi.Void Function();
 // Dart header typedef
 typedef SystemDart = void Function();
 
+typedef SystemCHello = ffi.Pointer<Utf8> Function(ffi.Pointer<Utf8> str);
+typedef SystemDartHello = ffi.Pointer<Utf8> Function(ffi.Pointer<Utf8> str);
+
 void main() {
-  // LibraryTest().openFromCLI();
-  LibraryTest().filesFromCLI();
+  final instance = LibraryTest();
+
+  // instance.openFromCLI();
+  // instance.filesFromCLI();
+  // instance.helloFromCLI();
 }
 
 class LibraryTest {
@@ -46,5 +54,23 @@ class LibraryTest {
         sysLib.lookupFunction<SystemC, SystemDart>('fetchtemp_files');
     // Call the function
     tempFiles();
+  }
+
+  void helloFromCLI() {
+    final sysLib = ffi.DynamicLibrary.open('./dylib/libfetchtemp.dylib');
+
+    final helloFromC =
+        sysLib.lookupFunction<SystemCHello, SystemDartHello>('sayHello');
+
+    // Pass input
+    final name = Utf8.toUtf8('Aseem');
+
+    // Call the function
+    final res = helloFromC(name);
+
+    // Convert resp into string
+    final strRes = Utf8.fromUtf8(res);
+    // ignore: avoid_print
+    print(strRes);
   }
 }
