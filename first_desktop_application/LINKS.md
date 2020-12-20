@@ -69,3 +69,16 @@ https://stackoverflow.com/questions/38201797/how-to-use-dylib-library-and-hpp-he
 
 ### CMake
 - https://youtu.be/7W4Q-XLnMaA
+
+### Linking Shared Library in MacOS Flutter Desktop
+- Open XCode, clean, build
+- Generate dylib using cmake
+- `cmake .` and then `make`
+- Follow steps at `https://flutter.dev/docs/development/platform-integration/c-interop#compiled-dynamic-library-macos`
+
+### Disable Hardened Runtime in Apple
+- In the DebugProfile.entitlements
+`
+<key>com.apple.security.app-sandbox</key>
+<false/>
+`
