@@ -37,6 +37,18 @@ dependencies:
   # Command Line Apps
   args: ^1.6.0
 
+  # AUTO SIZE TEXT
+  auto_size_text: ^2.1.0
+
+  # URL LAUNCHER
+  url_launcher: ^5.7.10
+
+  # WINDOW SIZE
+  window_size:
+    git:
+      url: git://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

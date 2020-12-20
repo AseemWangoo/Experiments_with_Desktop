@@ -1,8 +1,8 @@
-import 'package:first_desktop_application/app-level/widgets/option_name.dart';
-import 'package:first_desktop_application/routes/constants.dart';
+import 'package:first_desktop_application/app-level/constants/brand.links.dart';
 
 import 'package:flutter/material.dart';
 
+import 'widgets/parallax_btn.dart';
 import 'widgets/sliver.scaffold.dart';
 import 'widgets/top_nav.dart';
 
@@ -36,32 +36,41 @@ class _HomeState extends State<Home> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('1'),
-                Text('1'),
-                Text('1'),
-                Text('1'),
-                Text('1'),
-                Text('1'),
-                // OptionButton(
-                //   buttonText: 'Theming',
-                //   onTap: () => Navigator.pushNamed(context, themingRoute),
-                // ),
-                // OptionButton(
-                //   buttonText: 'Solar System',
-                //   onTap: () => Navigator.pushNamed(context, solarSystemRoute),
-                // ),
-                // OptionButton(
-                //   buttonText: 'Flipping',
-                //   onTap: () => Navigator.pushNamed(context, flippingRoute),
-                // ),
-                // OptionButton(
-                //   buttonText: 'Inking',
-                //   onTap: () => Navigator.pushNamed(context, inkingRoute),
-                // ),
-                // OptionButton(
-                //   buttonText: 'LiquidCards',
-                //   onTap: () => Navigator.pushNamed(context, liquidCardsRoute),
-                // ),
+                ParallaxButton(
+                  text: 'Theming',
+                  isFavorite: false,
+                  medium: BrandLinks.medium,
+                  website: BrandLinks.website,
+                  youtubeLink: BrandLinks.youtube,
+                ),
+                ParallaxButton(
+                  text: 'Solar System',
+                  isFavorite: false,
+                  medium: BrandLinks.medium,
+                  website: BrandLinks.website,
+                  youtubeLink: BrandLinks.youtube,
+                ),
+                ParallaxButton(
+                  text: 'Flipping',
+                  isFavorite: false,
+                  medium: BrandLinks.medium,
+                  website: BrandLinks.website,
+                  youtubeLink: BrandLinks.youtube,
+                ),
+                ParallaxButton(
+                  text: 'Inking',
+                  isFavorite: false,
+                  medium: BrandLinks.medium,
+                  website: BrandLinks.website,
+                  youtubeLink: BrandLinks.youtube,
+                ),
+                ParallaxButton(
+                  text: 'LiquidCards',
+                  isFavorite: false,
+                  medium: BrandLinks.medium,
+                  website: BrandLinks.website,
+                  youtubeLink: BrandLinks.youtube,
+                ),
               ],
             ),
           ),

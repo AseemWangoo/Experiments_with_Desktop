@@ -1,18 +1,27 @@
+import 'dart:io';
+
 import 'package:first_desktop_application/app-level/services/root_service.dart';
-import 'package:first_desktop_application/library/library.dart';
 import 'package:first_desktop_application/locator.dart';
 import 'package:first_desktop_application/routes/constants.dart';
 import 'package:first_desktop_application/routes/routes.dart' as routes;
 import 'package:first_desktop_application/themed/models/theme_model.dart';
 import 'package:first_desktop_application/themed/themes.dart';
 
-import 'package:flutter/foundation.dart'
-    show debugDefaultTargetPlatformOverride;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:window_size/window_size.dart';
+
 Future<void> main() async {
-  debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+  WidgetsFlutterBinding.ensureInitialized();
+
+  if (!Platform.isMacOS) {
+    return;
+  }
+
+  setWindowTitle('FlatteredWithFlutter');
+  setWindowMinSize(const Size(1200, 800));
+  setWindowMaxSize(Size.infinite);
 
   setupLocator();
 
