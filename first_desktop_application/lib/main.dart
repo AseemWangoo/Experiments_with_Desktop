@@ -62,7 +62,7 @@ class MyAppState extends State<MyApp> {
         return _errorMessage != null
             ? ErrorWidget(_errorMessage)
             : MaterialApp(
-                initialRoute: homeRoute,
+                initialRoute: AppRoutes.homeRoute,
                 debugShowCheckedModeBanner: false,
                 theme: AppTheme.lightTheme,
                 darkTheme: AppTheme.darkTheme,

@@ -23,6 +23,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     //
+    final _nav = Navigator.of(context);
+
     return SimpleSliverScaffold(
       controller: _controller,
       minHeight: 120.0,
@@ -35,43 +37,7 @@ class _HomeState extends State<Home> {
           child: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ParallaxButton(
-                  text: 'Theming',
-                  isFavorite: false,
-                  medium: BrandLinks.medium,
-                  website: BrandLinks.website,
-                  youtubeLink: BrandLinks.youtube,
-                ),
-                ParallaxButton(
-                  text: 'Solar System',
-                  isFavorite: false,
-                  medium: BrandLinks.medium,
-                  website: BrandLinks.website,
-                  youtubeLink: BrandLinks.youtube,
-                ),
-                ParallaxButton(
-                  text: 'Flipping',
-                  isFavorite: false,
-                  medium: BrandLinks.medium,
-                  website: BrandLinks.website,
-                  youtubeLink: BrandLinks.youtube,
-                ),
-                ParallaxButton(
-                  text: 'Inking',
-                  isFavorite: false,
-                  medium: BrandLinks.medium,
-                  website: BrandLinks.website,
-                  youtubeLink: BrandLinks.youtube,
-                ),
-                ParallaxButton(
-                  text: 'LiquidCards',
-                  isFavorite: false,
-                  medium: BrandLinks.medium,
-                  website: BrandLinks.website,
-                  youtubeLink: BrandLinks.youtube,
-                ),
-              ],
+              children: _addToList(_nav),
             ),
           ),
         ),
@@ -124,6 +90,29 @@ class _HomeState extends State<Home> {
     //     ),
     //   ),
     // );
+  }
+
+  List<Widget> _addToList(NavigatorState nav) {
+    const _optionRoutes = OptionAndRoutes.optionRoutes;
+    const _linkRoutes = OptionAndRoutes.linksRoutes;
+    final listOfWidgets = <Widget>[];
+
+    for (final _optionRoute in _optionRoutes.entries) {
+      listOfWidgets.add(
+        GestureDetector(
+          onTap: () => nav.pushNamed(_optionRoute.value),
+          child: ParallaxButton(
+            text: _optionRoute.key,
+            isFavorite: false,
+            medium: _linkRoutes[_optionRoute.key].first,
+            website: _linkRoutes[_optionRoute.key][1],
+            youtubeLink: _linkRoutes[_optionRoute.key].last,
+          ),
+        ),
+      );
+    }
+
+    return listOfWidgets;
   }
 
   @override

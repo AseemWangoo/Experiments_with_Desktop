@@ -19,26 +19,26 @@ class Router {
     switch (settings.name) {
       //Begin...
 
-      case homeRoute:
+      case AppRoutes.homeRoute:
         return MaterialPageRoute<dynamic>(builder: (_) => Home());
 
-      case themingRoute:
+      case AppRoutes.themingRoute:
         return MaterialPageRoute<dynamic>(builder: (_) => const MyHomePage());
 
-      case solarSystemRoute:
+      case AppRoutes.solarSystemRoute:
         return MaterialPageRoute<dynamic>(builder: (_) => ss.Home());
 
-      case flippingRoute:
+      case AppRoutes.flippingRoute:
         return MaterialPageRoute<dynamic>(
             builder: (_) => const flipping.Home());
 
-      case inkingRoute:
+      case AppRoutes.inkingRoute:
         return MaterialPageRoute<dynamic>(builder: (_) => const inking.Home());
 
-      case liquidCardsRoute:
+      case AppRoutes.liquidCardsRoute:
         return MaterialPageRoute<dynamic>(builder: (_) => const liquid.Home());
 
-      case travelCardsRoute:
+      case AppRoutes.travelCardsRoute:
         return MaterialPageRoute<dynamic>(builder: (_) => const travel.Home());
 
       default:
