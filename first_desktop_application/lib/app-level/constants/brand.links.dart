@@ -1,4 +1,8 @@
+import 'package:first_desktop_application/flipping/strings/strings.dart';
+import 'package:first_desktop_application/inking/strings/strings.dart';
+import 'package:first_desktop_application/liquid_cards/strings/strings.dart';
 import 'package:first_desktop_application/routes/constants.dart';
+import 'package:first_desktop_application/solarsystem/strings/strings.dart';
 
 class BrandLinks {
   BrandLinks._();
@@ -37,24 +41,24 @@ class OptionAndRoutes {
       BrandLinks.youtube
     ],
     option2: <String>[
-      BrandLinks.medium,
-      BrandLinks.website,
-      BrandLinks.youtube
+      ThreeDStrings.medium3D,
+      ThreeDStrings.web3D,
+      ThreeDStrings.yt3D,
     ],
     option3: <String>[
-      BrandLinks.medium,
-      BrandLinks.website,
-      BrandLinks.youtube
+      FlippingStrings.mediumBPV,
+      FlippingStrings.webBPV,
+      FlippingStrings.ytBPV,
     ],
     option4: <String>[
-      BrandLinks.medium,
-      BrandLinks.website,
-      BrandLinks.youtube
+      DarkModeStrings.mediumDMV,
+      DarkModeStrings.webDMV,
+      DarkModeStrings.ytDMV,
     ],
     option5: <String>[
-      BrandLinks.medium,
-      BrandLinks.website,
-      BrandLinks.youtube
+      LCStrings.mediumLCV,
+      LCStrings.webLCV,
+      LCStrings.ytLCV,
     ],
   };
 }
