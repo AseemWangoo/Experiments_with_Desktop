@@ -8,4 +8,6 @@ class AppRoutes {
   static const String inkingRoute = '/inking';
   static const String liquidCardsRoute = '/liquidCards';
   static const String travelCardsRoute = '/travelCards';
+
+  static const String libraryRoute = '/c-library';
 }

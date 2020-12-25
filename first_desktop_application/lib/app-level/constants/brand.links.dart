@@ -25,6 +25,7 @@ class OptionAndRoutes {
   static const String option3 = 'Flipping';
   static const String option4 = 'Inking';
   static const String option5 = 'LiquidCards';
+  static const String option6 = 'C Library';
 
   static const Map<String, String> optionRoutes = {
     option1: AppRoutes.themingRoute,
@@ -32,6 +33,7 @@ class OptionAndRoutes {
     option3: AppRoutes.flippingRoute,
     option4: AppRoutes.inkingRoute,
     option5: AppRoutes.liquidCardsRoute,
+    option6: AppRoutes.libraryRoute,
   };
 
   static const Map<String, List<String>> linksRoutes = {
@@ -59,6 +61,11 @@ class OptionAndRoutes {
       LCStrings.mediumLCV,
       LCStrings.webLCV,
       LCStrings.ytLCV,
+    ],
+    option6: <String>[
+      BrandLinks.medium,
+      BrandLinks.website,
+      BrandLinks.youtube,
     ],
   };
 }

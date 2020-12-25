@@ -16,7 +16,7 @@ typedef SystemCHello = ffi.Pointer<Utf8> Function(ffi.Pointer<Utf8> str);
 typedef SystemDartHello = ffi.Pointer<Utf8> Function(ffi.Pointer<Utf8> str);
 
 void main() {
-  final instance = LibraryTest();
+  // final instance = LibraryTest();
 
   // instance.openFromCLI();
   // instance.filesFromCLI();
@@ -34,7 +34,7 @@ class LibraryTest {
     hello();
   }
 
-  void inputFromFlutterToC(String input) {
+  String inputFromFlutterToC(String input) {
     final sysLib = ffi.DynamicLibrary.open('libfetchtemp.dylib');
 
     final helloFromC =
@@ -50,6 +50,7 @@ class LibraryTest {
     final strRes = Utf8.fromUtf8(res);
     // ignore: avoid_print
     print(strRes);
+    return strRes;
   }
 
   void filesFromFlutter() {
