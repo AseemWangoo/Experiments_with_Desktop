@@ -1,3 +1,4 @@
+import 'package:first_desktop_application/app-level/constants/strings.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -14,7 +15,7 @@ class AppTheme {
       color: _lightPrimaryColor,
       iconTheme: IconThemeData(color: _lightOnPrimaryColor),
     ),
-    fontFamily: 'Roboto',
+    fontFamily: AppLevelStrings.fontFamily,
     textTheme: const TextTheme(
       bodyText2: TextStyle(color: Colors.black),
     ),
@@ -26,7 +27,7 @@ class AppTheme {
       color: _darkPrimaryAppBarColor,
       iconTheme: IconThemeData(color: _darkPrimaryColor),
     ),
-    fontFamily: 'Roboto',
+    fontFamily: AppLevelStrings.fontFamily,
     textTheme: const TextTheme(
       bodyText2: TextStyle(color: Colors.white),
     ),

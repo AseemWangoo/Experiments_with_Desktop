@@ -1,18 +1,13 @@
-/*
- * ----------------------------------------------------------
- * Routing constants used within the app....
- * ----------------------------------------------------------
- */
-const String homeRoute = '/';
+class AppRoutes {
+  AppRoutes._();
 
-const String themingRoute = '/themes';
+  static const String homeRoute = '/';
+  static const String themingRoute = '/themes';
+  static const String solarSystemRoute = '/solarsystem';
+  static const String flippingRoute = '/flipping';
+  static const String inkingRoute = '/inking';
+  static const String liquidCardsRoute = '/liquidCards';
+  static const String travelCardsRoute = '/travelCards';
 
-const String solarSystemRoute = '/solarsystem';
-
-const String flippingRoute = '/flipping';
-
-const String inkingRoute = '/inking';
-
-const String liquidCardsRoute = '/liquidCards';
-
-const String travelCardsRoute = '/travelCards';
+  static const String libraryRoute = '/c-library';
+}

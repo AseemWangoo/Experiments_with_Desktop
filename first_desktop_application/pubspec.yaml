@@ -1,11 +1,12 @@
 name: first_desktop_application
 description: Hands on With Desktop application.
 
-version: 0.1.0+1
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+2
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
-
+  sdk: ">=2.8.0 <3.0.0"
   flutter: ">=1.10.2-pre.54"
 
 dependencies:
@@ -17,6 +18,9 @@ dependencies:
 
   flare_flutter: ^1.7.3
   get_it: ^3.1.0
+
+  # FONTS
+  font_awesome_flutter: ^8.11.0
 
   # YOUR OWN PLUGIN, the name of my plugin is `init_dsktp_plugin`
   init_dsktp_plugin:
@@ -32,6 +36,18 @@ dependencies:
 
   # Command Line Apps
   args: ^1.6.0
+
+  # AUTO SIZE TEXT
+  auto_size_text: ^2.1.0
+
+  # URL LAUNCHER
+  url_launcher: ^5.7.10
+
+  # WINDOW SIZE
+  window_size:
+    git:
+      url: git://github.com/google/flutter-desktop-embedding.git
+      path: plugins/window_size
 
 dev_dependencies:
   flutter_test:
@@ -76,3 +92,7 @@ flutter:
           weight: 600
         - asset: fonts/Poppins-Bold.ttf
           weight: 700
+
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
