@@ -1,13 +1,30 @@
 import 'dart:io';
 
-import 'api/crypto.api.dart';
+import 'package:args/command_runner.dart';
+import 'package:first_desktop_application/crypto/commands/crypto.dart';
 
-Future<void> main() async {
+Future<void> main(List<String> args) async {
   if (!Platform.isMacOS) {
     throw UnsupportedError('Not supported OS ${Platform.operatingSystem}!');
   }
+  final rainBow = Runes('\u{1F308}');
 
-  final data = await CrptoAPI().fetchData();
+  stdout.writeln(
+    '>>>>>>>> FETCHING BTC PRICE >>>>>>> ${String.fromCharCodes(rainBow)}',
+  );
+  stdout.writeln('');
 
-  print(data.bpi.usd.rateFloat.toString());
+  final runner = CommandRunner<dynamic>(
+    'btc',
+    'Info: Know the price of BTC.',
+  );
+
+  runner.addCommand(CryptoCmd());
+
+  final dynamic resp = await runner.run(args).catchError((dynamic exc) {
+    stdout.writeln('❌ ❌ ❌ Error $exc');
+    exitCode = 1;
+  });
+
+  return resp;
 }
