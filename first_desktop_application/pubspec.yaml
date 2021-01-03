@@ -43,11 +43,19 @@ dependencies:
   # URL LAUNCHER
   url_launcher: ^5.7.10
 
+  # UNCOMMENT THIS FOR BUILDING MAC EXECUTABLE
   # WINDOW SIZE
-  window_size:
-    git:
-      url: git://github.com/google/flutter-desktop-embedding.git
-      path: plugins/window_size
+  # window_size:
+  #   git:
+  #     url: git://github.com/google/flutter-desktop-embedding.git
+  #     path: plugins/window_size
+
+  # HTTP
+  http: ^0.12.0
+
+  # TYPED DATA
+  typed_data: ^1.2.0
+  collection: ^1.14.13
 
 dev_dependencies:
   flutter_test:
@@ -55,6 +63,14 @@ dev_dependencies:
 
   # LINTER
   lint: ^1.2.0
+
+  # UNCOMMENT THIS FOR BUILDING MAC EXECUTABLE
+# dependency_overrides:
+#   typed_data: ^1.2.0
+#   collection: ^1.14.13
+#   string_scanner: ^1.0.5
+#   source_span: ^1.7.0
+#   path: ^1.7.0
 
 flutter:
   uses-material-design: true
