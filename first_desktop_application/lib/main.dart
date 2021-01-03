@@ -10,7 +10,7 @@ import 'package:first_desktop_application/themed/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:window_size/window_size.dart';
+// import 'package:window_size/window_size.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,9 +19,9 @@ Future<void> main() async {
     return;
   }
 
-  setWindowTitle('FlatteredWithFlutter');
-  setWindowMinSize(const Size(1200, 800));
-  setWindowMaxSize(Size.infinite);
+  // setWindowTitle('FlatteredWithFlutter');
+  // setWindowMinSize(const Size(1200, 800));
+  // setWindowMaxSize(Size.infinite);
 
   setupLocator();
 
