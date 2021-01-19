@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:first_desktop_application/crypto/commands/crypto.dart';
 
+import 'commands/hello.dart';
+
 Future<void> main(List<String> args) async {
   if (!Platform.isMacOS) {
     throw UnsupportedError('Not supported OS ${Platform.operatingSystem}!');
@@ -20,6 +22,7 @@ Future<void> main(List<String> args) async {
   );
 
   runner.addCommand(CryptoCmd());
+  // runner.addCommand(HelloCmd());
 
   final dynamic resp = await runner.run(args).catchError((dynamic exc) {
     stdout.writeln('❌ ❌ ❌ Error $exc');
