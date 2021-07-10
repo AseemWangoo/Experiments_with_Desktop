@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:args/command_runner.dart';
 
 abstract class BaseCLICommand extends Command<dynamic> {
