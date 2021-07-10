@@ -41,13 +41,13 @@ class LibraryTest {
         sysLib.lookupFunction<SystemCHello, SystemDartHello>('sayHello');
 
     // Pass input
-    final name = Utf8.toUtf8(input);
+    final name = input.toNativeUtf8();
 
     // Call the function
     final res = helloFromC(name);
 
     // Convert resp into string
-    final strRes = Utf8.fromUtf8(res);
+    final strRes = res.toDartString();
     // ignore: avoid_print
     print(strRes);
     return strRes;
@@ -91,13 +91,13 @@ class LibraryTest {
         sysLib.lookupFunction<SystemCHello, SystemDartHello>('sayHello');
 
     // Pass input
-    final name = Utf8.toUtf8('Aseem');
+    final name = 'Aseem'.toNativeUtf8();
 
     // Call the function
     final res = helloFromC(name);
 
     // Convert resp into string
-    final strRes = Utf8.fromUtf8(res);
+    final strRes = res.toDartString();
     // ignore: avoid_print
     print(strRes);
   }

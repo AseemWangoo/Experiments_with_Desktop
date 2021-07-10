@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:first_desktop_application/crypto/commands/crypto.dart';
 
-import 'commands/hello.dart';
-
 Future<void> main(List<String> args) async {
   if (!Platform.isMacOS) {
     throw UnsupportedError('Not supported OS ${Platform.operatingSystem}!');

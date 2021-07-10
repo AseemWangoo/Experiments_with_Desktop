@@ -28,11 +28,11 @@ class FFIFunc {
 
     /// Convert a [String] to a Utf8-encoded null-terminated C string.
     /// Returns a malloc-allocated pointer to the result.
-    final cmd = Utf8.toUtf8(command);
+    final cmd = command.toNativeUtf8();
 
     sysFunc(cmd);
 
     /// Releases memory on the native heap.
-    free(cmd);
+    malloc.free(cmd);
   }
 }
